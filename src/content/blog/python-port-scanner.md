@@ -1,8 +1,8 @@
 ---
-title: "Viết port scanner đa luồng bằng Python"
-description: "Xây dựng một TCP port scanner đơn giản với socket và ThreadPoolExecutor."
+title: "Writing a multithreaded port scanner in Python"
+description: "Build a simple TCP port scanner with socket and ThreadPoolExecutor."
 date: 2026-11-21
-category: lap-trinh
+category: programming
 tags: [python, socket, tools]
 ---
 
@@ -23,4 +23,4 @@ if __name__ == "__main__":
     print(scan("127.0.0.1"))
 ```
 
-Cách này chạy ổn cho mục đích học; với quét thật hãy dùng `nmap` hoặc `masscan`.
+This works fine for learning; for real scans use `nmap` or `masscan`.

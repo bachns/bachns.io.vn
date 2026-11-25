@@ -18,20 +18,20 @@ const count = (k: string) => posts.filter((p) => p.data.category === k).length;
         <div class="o">{posts.length}</div>
       </div>
     </div>
-    <h1>Học, thực hành và <span style="color:var(--accent)">chia sẻ</span>.</h1>
+    <h1>Learn, practice and <span style="color:var(--accent)">share</span>.</h1>
     <p class="lead">{SITE.description}</p>
   </section>
 
   <div class="container">
-    <div class="section-title">// chuyên mục</div>
+    <div class="section-title">// categories</div>
     <div class="cats">
       {Object.entries(CATEGORIES).map(([k, c]) => (
-        <a class="cat" href={`/category/${k}/`}><span class="ic">{c.icon}</span><strong>{c.name}</strong><small>{count(k)} bài</small></a>
+        <a class="cat" href={`/category/${k}/`}><span class="ic">{c.icon}</span><strong>{c.name}</strong><small>{count(k)} {count(k) === 1 ? 'post' : 'posts'}</small></a>
       ))}
     </div>
 
-    <div class="section-title">// bài viết mới</div>
+    <div class="section-title">// latest posts</div>
     <div class="posts">{posts.slice(0, 8).map((p) => <PostCard post={p} />)}</div>
-    <p style="margin-top:24px"><a href="/blog/">→ Xem tất cả bài viết</a></p>
+    <p style="margin-top:24px"><a href="/blog/">→ View all posts</a></p>
   </div>
 </Base>

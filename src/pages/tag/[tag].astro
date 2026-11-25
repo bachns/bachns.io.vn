@@ -12,7 +12,7 @@ const { posts } = Astro.props;
 ---
 <Base title={`#${tag}`}>
   <div class="container narrow">
-    <div class="page-title"><h1>#{tag}</h1><p>{posts.length} bài viết</p></div>
+    <div class="page-title"><h1>#{tag}</h1><p>{posts.length} posts</p></div>
     <div class="posts" style="margin-top:24px">{posts.map((p) => <PostCard post={p} />)}</div>
   </div>
 </Base>

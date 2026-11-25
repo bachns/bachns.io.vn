@@ -6,10 +6,10 @@ const index = (await getPosts()).map((p) => ({
   cat: CATEGORIES[p.data.category].name, date: fmtDate(p.data.date),
 }));
 ---
-<Base title="Tìm kiếm">
+<Base title="Search">
   <div class="container narrow">
-    <div class="page-title"><h1>~/tìm-kiếm</h1></div>
-    <input class="search" id="q" type="search" placeholder="grep -ri &quot;từ khoá&quot; ..." autofocus style="margin-top:20px" />
+    <div class="page-title"><h1>~/search</h1></div>
+    <input class="search" id="q" type="search" placeholder="grep -ri &quot;keyword&quot; ..." autofocus style="margin-top:20px" />
     <div class="posts" id="results" style="margin-top:22px"></div>
   </div>
   <script define:vars={{ index }}>
@@ -20,7 +20,7 @@ const index = (await getPosts()).map((p) => ({
       const terms = norm(q.value).split(/\s+/).filter(Boolean);
       const hits = terms.length ? index.filter((p) => { const h = norm([p.title, p.desc, p.cat, p.tags.join(' ')].join(' ')); return terms.every((t) => h.includes(t)); }) : [];
       out.innerHTML = hits.map((p) => `<article class="card"><div class="meta"><span class="badge">${esc(p.cat)}</span><span>${p.date}</span></div><h3><a href="${p.url}">${esc(p.title)}</a></h3><p>${esc(p.desc)}</p></article>`).join('')
-        || (terms.length ? '<p>Không tìm thấy kết quả.</p>' : '');
+        || (terms.length ? '<p>No results found.</p>' : '');
     }
     q.addEventListener('input', run);
     const init = new URLSearchParams(location.search).get('q'); if (init) { q.value = init; run(); }

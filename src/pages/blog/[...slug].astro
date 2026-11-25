@@ -17,19 +17,19 @@ const c = CATEGORIES[post.data.category];
       <div class="meta">
         <a class="badge" href={`/category/${post.data.category}/`}>{c.icon} {c.name}</a>
         <time datetime={post.data.date.toISOString()}>{fmtDate(post.data.date)}</time>
-        {post.data.updated && <span>cập nhật {fmtDate(post.data.updated)}</span>}
-        <span>{readingTime(post.body ?? '')} phút đọc</span>
+        {post.data.updated && <span>updated {fmtDate(post.data.updated)}</span>}
+        <span>{readingTime(post.body ?? '')} min read</span>
       </div>
       <h1>{post.data.title}</h1>
       <div class="tags">{post.data.tags.map((t) => <a class="tag" href={`/tag/${t}/`}>{t}</a>)}</div>
     </header>
     {post.data.category === 'hacking' && (
-      <div class="disclaimer">⚠️ Nội dung chỉ phục vụ mục đích học tập và kiểm thử trên hệ thống bạn sở hữu hoặc được phép. Tác giả không chịu trách nhiệm cho việc sử dụng sai mục đích.</div>
+      <div class="disclaimer">⚠️ This content is for educational purposes and for testing on systems you own or are explicitly authorized to test. The author is not responsible for misuse.</div>
     )}
     <article class="prose"><Content /></article>
     <nav class="post-nav" style="display:grid">
-      {older ? <a href={`/blog/${older.id}/`}><small>← Bài cũ hơn</small>{older.data.title}</a> : <span></span>}
-      {newer ? <a class="next" href={`/blog/${newer.id}/`}><small>Bài mới hơn →</small>{newer.data.title}</a> : <span></span>}
+      {older ? <a href={`/blog/${older.id}/`}><small>← Older post</small>{older.data.title}</a> : <span></span>}
+      {newer ? <a class="next" href={`/blog/${newer.id}/`}><small>Newer post →</small>{newer.data.title}</a> : <span></span>}
     </nav>
   </div>
   <script is:inline>

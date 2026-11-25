@@ -5,9 +5,9 @@ const counts = new Map<string, number>();
 (await getPosts()).forEach((p) => p.data.tags.forEach((t) => counts.set(t, (counts.get(t) ?? 0) + 1)));
 const tags = [...counts].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]));
 ---
-<Base title="Thẻ">
+<Base title="Tags">
   <div class="container narrow">
-    <div class="page-title"><h1>~/thẻ</h1></div>
+    <div class="page-title"><h1>~/tags</h1></div>
     <div class="tagcloud" style="margin-top:24px">{tags.map(([t, n]) => <a href={`/tag/${t}/`}>#{t}<sup>{n}</sup></a>)}</div>
   </div>
 </Base>

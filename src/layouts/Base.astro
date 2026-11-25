@@ -7,11 +7,11 @@ const full = title ? `${title} | ${SITE.title}` : `${SITE.title} — ${SITE.tagl
 const canonical = new URL(Astro.url.pathname, Astro.site);
 const path = Astro.url.pathname;
 const nav = [
-  ['/blog/', 'blog'], ['/category/', 'chuyên-mục'], ['/tag/', 'thẻ'], ['/archive/', 'lưu-trữ'], ['/search/', 'tìm-kiếm'], ['/about/', 'about'],
+  ['/blog/', 'blog'], ['/category/', 'categories'], ['/tag/', 'tags'], ['/archive/', 'archive'], ['/search/', 'search'], ['/about/', 'about'],
 ];
 ---
 <!doctype html>
-<html lang="vi" data-theme="dark">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -21,7 +21,7 @@ const nav = [
   <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
   <link rel="alternate" type="application/rss+xml" title={SITE.title} href="/rss.xml" />
   <meta property="og:title" content={full} /><meta property="og:description" content={description} />
-  <meta property="og:type" content={type} /><meta property="og:url" content={canonical} />
+  <meta property="og:locale" content="en_US" /><meta property="og:type" content={type} /><meta property="og:url" content={canonical} />
   <meta name="theme-color" content="#0b0f14" />
   <script is:inline>
     try { const t = localStorage.getItem('theme'); if (t) document.documentElement.dataset.theme = t; } catch {}
@@ -34,7 +34,7 @@ const nav = [
       <nav>
         {nav.map(([href, label]) => <a href={href} class:list={{ active: path.startsWith(href) }}>{label}</a>)}
         <a href="/rss.xml" title="RSS">rss</a>
-        <button class="icon-btn" id="theme" aria-label="Đổi giao diện">◐</button>
+        <button class="icon-btn" id="theme" aria-label="Toggle theme">◐</button>
       </nav>
     </div>
   </header>
