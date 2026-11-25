@@ -1,9 +1,10 @@
 ---
 import Base from '../layouts/Base.astro';
-import { SITE } from '../lib/site';
+import { CATEGORIES, SITE } from '../lib/site';
+const topics = Object.entries(CATEGORIES);
 ---
-<Base title="About" description="About Bách Nguyễn - a developer who loves technology, books and coffee, writing from Hanoi, Vietnam.">
-  <div class="container narrow">
+<Base title="About" description="About Bach Nguyen, a developer who loves technology, books and coffee, writing from Hanoi, Vietnam.">
+  <div class="container about">
     <header class="about-head">
       <div class="about-photo"><img src={SITE.avatar} alt={`${SITE.name} - profile photo`} width="768" height="768" /></div>
       <div>
@@ -14,39 +15,98 @@ import { SITE } from '../lib/site';
       </div>
     </header>
 
-    <article class="prose panel">
-      <p>Hi, I'm <strong>Bách Nguyễn</strong> - some friends call me <em>Mr. Robot</em> - and I'm the author of this blog.
-      I'm glad you're curious about the journey behind it.</p>
+    <p class="about-lead">
+      Hi, I'm <strong>Bach Nguyen</strong>, though some friends call me <em>Mr. Robot</em>.
+      I'm the author of this blog, and I'm glad you're curious about the journey behind these pages.
+      Grab a coffee if you like, and let me introduce myself.
+    </p>
 
-      <h2>About this blog</h2>
-      <p>I write here to keep, and to share, the knowledge I pick up along the way. It covers
-      <strong>technology</strong>, <strong>cryptography</strong>, <strong>programming</strong>, <strong>IT systems</strong>
-      - security, system administration and Linux in particular - and now and then, a few random things that don't fit anywhere else.</p>
+    <div class="facts">
+      <div class="fact"><small>Based in</small><b>Hanoi, Vietnam</b><span>about 100 km from my hometown</span></div>
+      <div class="fact"><small>Hometown</small><b>Hung Yen Province</b><span>the old Thai Binh Province</span></div>
+      <div class="fact"><small>Studied</small><b>Information Technology</b><span><a href="https://mta.edu.vn/">Military Technical Academy</a></span></div>
+      <div class="fact"><small>Fueled by</small><b>Coffee &amp; books</b><span>and a little volleyball</span></div>
+    </div>
 
-      <h2>About me</h2>
-      <p>I was born and raised in <strong>Hung Yen Province</strong>, in the area that used to be the old <strong>Thai Binh Province</strong>.
-      It's an agricultural region about 100 km south-east of Hanoi.
-      Our local specialty is poverty, and endless rice fields where the storks fly and fly without ever finding a place to land.</p>
-      <p>I went to <strong>Hung Nhan High School</strong>, probably the coolest school in my hometown and the one everybody
-      dreams of getting into. Besides its excellent teachers, it's famous for plenty of good-looking students.</p>
-      <p>In my final year I made a hard decision: I chose the military, and chose to study <strong>Information Technology</strong>
-      at the <a href="https://mta.edu.vn/"><strong>Military Technical Academy</strong></a> (MTA). It wasn't easy, but I'm always happy and proud that I made it.</p>
+    <div class="section-title">// why this blog</div>
+    <p class="about-text">
+      This blog is my notebook. Along the road I keep picking up knowledge: a bit of technology, some cryptography,
+      a lot of programming, and the many moving parts of IT systems. Writing it down helps me remember it,
+      and sharing it means someone else might skip a few of the wrong turns I took.
+    </p>
+    <p class="about-text">Here is what you can expect:</p>
+    <div class="cats roomy">
+      {topics.map(([k, c]) => (
+        <a class="cat" href={`/category/${k}/`}><span class="ic">{c.icon}</span><strong>{c.name}</strong><small class="d">{c.desc}</small></a>
+      ))}
+    </div>
+    <p class="about-text">
+      And now and then, a few random things that don't fit anywhere else. Those are often the most fun to write.
+    </p>
 
-      <h2>Beyond the keyboard</h2>
-      <ul>
-        <li><strong>Books.</strong> Reading is one of my favorite ways to learn, and a big part of how this blog gets written.</li>
-        <li><strong>Coffee.</strong> I can't say exactly when it started - probably while I was studying for the high school entrance exams,
-        when coffee helped me focus and fight off sleepiness. Today I drink it every day: morning, afternoon, and sometimes late at night.</li>
-        <li><strong>Volleyball.</strong> I'm no national star, but at my workplace I'm ranked in the top ten.
-        Standing 1.74 m tall, I'm the terror of every blocker.</li>
-      </ul>
+    <div class="section-title">// my journey</div>
+    <ol class="timeline">
+      <li class="tl">
+        <span class="tl-tag">Roots</span>
+        <h3>A rice-field childhood</h3>
+        <p>I was born and raised in <strong>Hung Yen Province</strong>, in the area that used to be the old
+        <strong>Thai Binh Province</strong>, about 100 km south-east of Hanoi. It is an agricultural land.
+        Our local specialty is poverty, plus endless rice fields so wide that the storks can fly and fly
+        without ever finding a place to land.</p>
+      </li>
+      <li class="tl">
+        <span class="tl-tag">High school</span>
+        <h3>The coolest school in town</h3>
+        <p>I studied at <strong>Hung Nhan High School</strong>, probably the coolest school in my hometown and the one
+        everybody dreams of getting into. It had excellent teachers, and it was just as famous for its
+        good-looking students.</p>
+      </li>
+      <li class="tl">
+        <span class="tl-tag">A big decision</span>
+        <h3>Uniform and code</h3>
+        <p>In my final year I made a hard decision: I chose the military, and I chose to study
+        <strong>Information Technology</strong> at the
+        <a href="https://mta.edu.vn/"><strong>Military Technical Academy</strong></a> (MTA).
+        It wasn't easy, but I'm still happy and proud that I made that choice.</p>
+      </li>
+      <li class="tl">
+        <span class="tl-tag">Today</span>
+        <h3>Still learning, now in public</h3>
+        <p>These days I'm a developer living in Hanoi, still curious, still learning, and writing down
+        what I learn here so that I can keep it and share it.</p>
+      </li>
+    </ol>
 
-      <h2>Contact</h2>
-      <ul>
-        <li>Email: <a href="mailto:bachns@outlook.com">bachns@outlook.com</a></li>
-        <li>Telegram: <a href="https://t.me/bachns">@bachns</a></li>
-        <li>RSS: <a href="/rss.xml">/rss.xml</a></li>
-      </ul>
-    </article>
+    <div class="section-title">// beyond the keyboard</div>
+    <div class="hobbies">
+      <div class="card">
+        <span class="ic">📚</span>
+        <h3>Books</h3>
+        <p>I love to read. Books are where a lot of my curiosity starts, and they are one of my favorite ways to learn.</p>
+      </div>
+      <div class="card">
+        <span class="ic">☕</span>
+        <h3>Coffee</h3>
+        <p>I can't say exactly when it started, probably while I was preparing for the high school entrance exams,
+        when coffee became my sidekick for staying focused and beating sleepiness. Today I drink it every day:
+        morning, afternoon, and sometimes late at night.</p>
+      </div>
+      <div class="card">
+        <span class="ic">🏐</span>
+        <h3>Volleyball</h3>
+        <p>I'm no national star, but at my workplace I'm ranked in the top ten. At 1.74 m tall,
+        I'm the terror of every blocker.</p>
+      </div>
+    </div>
+
+    <div class="section-title">// say hello</div>
+    <p class="about-text">
+      If you want to talk about technology, or you have feedback on a post, you're always welcome to reach out.
+    </p>
+    <div class="hero-cta">
+      <a class="btn" href="mailto:bachns@outlook.com">✉ Email</a>
+      <a class="btn ghost" href="https://t.me/bachns">Telegram</a>
+      <a class="btn ghost" href="/rss.xml">RSS</a>
+    </div>
   </div>
 </Base>
