@@ -1,7 +1,22 @@
 ---
 import Base from '../layouts/Base.astro';
 import { SITE } from '../lib/site';
-const chips = ['Prometheus', 'Grafana', 'ELK Stack', 'Apache Kafka', 'ClickHouse', 'Kubernetes', 'Big Data', 'DevOps', 'Monitoring', 'Databases'];
+const stack: [string, string[]][] = [
+  ['Observability', ['Monitoring', 'Prometheus', 'Grafana', 'ELK Stack']],
+  ['Data', ['Big Data', 'Apache Kafka', 'ClickHouse', 'Data Warehouse', 'Databases']],
+  ['Infrastructure', ['DevOps', 'Kubernetes (K8s)']],
+];
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: SITE.name,
+  alternateName: SITE.altName,
+  url: 'https://bachns.io.vn/about/',
+  image: `https://bachns.io.vn${SITE.avatar}`,
+  address: { '@type': 'PostalAddress', addressLocality: 'Hanoi', addressCountry: 'VN' },
+  alumniOf: { '@type': 'CollegeOrUniversity', name: 'Military Technical Academy', url: 'https://mta.edu.vn/' },
+  knowsAbout: ['Monitoring', 'Prometheus', 'Grafana', 'ELK Stack', 'Apache Kafka', 'ClickHouse', 'Kubernetes', 'DevOps', 'Big Data', 'Databases', 'Linux', 'Cryptography'],
+};
 ---
 <Base title="About" description="About Bach Nguyen, a developer who loves technology, books and coffee, writing from Hanoi, Vietnam.">
   <div class="container about">
@@ -22,25 +37,25 @@ const chips = ['Prometheus', 'Grafana', 'ELK Stack', 'Apache Kafka', 'ClickHouse
     </p>
 
     <p class="about-text">
-      I'm based in Hanoi, Vietnam, about 100 km from my hometown in Hung Yen Province, the old Thai Binh Province.
+      I'm based in Hanoi, Vietnam, and my hometown is in Hung Yen Province, the old Thai Binh Province.
       I studied Information Technology at the <a href="https://mta.edu.vn/">Military Technical Academy</a>,
       and these days I'm fueled by coffee and books, with a little volleyball on the side.
     </p>
 
-    <div class="section-title">// tech i work with</div>
+    <h2 class="section-title">// tech i work with</h2>
     <p class="about-text">
       Beyond writing code, I spend my time on the platforms behind it: data, infrastructure and observability.
-      These are the technologies and practices I work with.
     </p>
-    <div class="chip-row">{chips.map((c) => <span class="tchip">{c}</span>)}</div>
+    <div class="tech-rows">
+      {stack.map(([label, items]) => (
+        <div class="tech-row">
+          <small>{label}</small>
+          <div class="chip-row">{items.map((c) => <span class="tchip">{c}</span>)}</div>
+        </div>
+      ))}
+    </div>
 
-    <p class="about-text">
-      On the observability side I work with monitoring, Prometheus, Grafana and the ELK Stack.
-      On the data side it is Big Data, Apache Kafka, ClickHouse as a data warehouse, and databases.
-      And on the infrastructure side, DevOps and Kubernetes (K8s).
-    </p>
-
-    <div class="section-title">// why this blog</div>
+    <h2 class="section-title">// why this blog</h2>
     <p class="about-text">
       This blog is my notebook. Along the road I keep picking up knowledge: a bit of technology, some cryptography,
       a lot of programming, and the many moving parts of IT systems. Writing it down helps me remember it,
@@ -51,16 +66,16 @@ const chips = ['Prometheus', 'Grafana', 'ELK Stack', 'Apache Kafka', 'ClickHouse
       <a href="/category/sysadmin/">system administration</a>, <a href="/category/linux/">Linux</a>,
       <a href="/category/programming/">programming</a> and <a href="/category/cryptography/">cryptography</a>,
       plus some <a href="/category/tech/">tech</a> news and trends. And now and then, a few random things
-      that don't fit anywhere else. Those are often the most fun to write.
+      that don't fit anywhere else.
     </p>
 
-    <div class="section-title">// my journey</div>
+    <h2 class="section-title">// my journey</h2>
     <ol class="timeline">
       <li class="tl">
         <span class="tl-tag">Roots</span>
         <h3>A rice-field childhood</h3>
         <p>I was born and raised in <strong>Hung Yen Province</strong>, in the area that used to be the old
-        <strong>Thai Binh Province</strong>, about 100 km south-east of Hanoi. It is an agricultural land.
+        <strong>Thai Binh Province</strong>, about 100 km south-east of Hanoi. It is farming country.
         Our local specialty is poverty, plus endless rice fields so wide that the storks can fly and fly
         without ever finding a place to land.</p>
       </li>
@@ -83,11 +98,11 @@ const chips = ['Prometheus', 'Grafana', 'ELK Stack', 'Apache Kafka', 'ClickHouse
         <span class="tl-tag">Today</span>
         <h3>Still learning, now in public</h3>
         <p>These days I'm a developer living in Hanoi, still curious, still learning, and writing down
-        what I learn here so that I can keep it and share it.</p>
+        what I learn here so I can keep it and share it.</p>
       </li>
     </ol>
 
-    <div class="section-title">// beyond the keyboard</div>
+    <h2 class="section-title">// beyond the keyboard</h2>
     <p class="about-text">
       Away from the keyboard, you will usually find me with a book or a cup of coffee. I love to read, and books are
       where a lot of my curiosity starts. As for coffee, I can't say exactly when it began, probably while I was
@@ -99,7 +114,7 @@ const chips = ['Prometheus', 'Grafana', 'ELK Stack', 'Apache Kafka', 'ClickHouse
       and at 1.74 m tall I'm the terror of every blocker.
     </p>
 
-    <div class="section-title">// say hello</div>
+    <h2 class="section-title">// say hello</h2>
     <p class="about-text">
       If you want to talk about technology, or you have feedback on a post, you're always welcome to reach out.
     </p>
@@ -109,4 +124,5 @@ const chips = ['Prometheus', 'Grafana', 'ELK Stack', 'Apache Kafka', 'ClickHouse
       <a class="btn ghost" href="/rss.xml">RSS</a>
     </div>
   </div>
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
 </Base>

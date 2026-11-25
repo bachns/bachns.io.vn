@@ -224,8 +224,13 @@ footer .container { display: flex; justify-content: center; text-align: center; 
 @media (max-width: 560px) { .about-lead { font-size: 17px; } .timeline { padding-left: 24px; } .tl::before { left: -23px; } .timeline::before { left: 5px; } }
 
 /* tech stack */
-.chip-row { display: flex; flex-wrap: wrap; gap: 10px; margin: 4px 0 22px; }
+.chip-row { display: flex; flex-wrap: wrap; gap: 10px; margin: 0; }
 .tchip { font: 600 13px var(--mono); color: #b8ffd0; padding: 6px 14px; border-radius: 99px; background: rgba(0, 255, 120, .09); border: 1px solid rgba(0, 255, 120, .35);
   box-shadow: 0 0 14px rgba(0, 255, 120, .12); transition: .2s; }
 .tchip:hover { background: rgba(0, 255, 120, .2); box-shadow: 0 0 22px rgba(0, 255, 120, .4); transform: translateY(-2px); }
 @media (prefers-reduced-motion: reduce) { .tchip { transition: none; } }
+
+.tech-rows { display: grid; gap: 14px; margin: 6px 0 4px; }
+.tech-row { display: flex; align-items: baseline; gap: 16px; }
+.tech-row > small { flex: 0 0 120px; font: 600 11.5px var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--accent); }
+@media (max-width: 560px) { .tech-row { flex-direction: column; gap: 8px; } .tech-row > small { flex: none; } }
