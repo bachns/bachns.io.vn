@@ -1,5 +1,5 @@
 /* Animated backgrounds — a scene is picked at random on every page visit (never the same one twice in a row).
-   Scenes: matrix · network · stars · circuit · radar.  Override with ?bg=<name> or the ◈ button. */
+   Scenes: matrix · network · stars · circuit · aurora · logs · waves · hexgrid.  Override with ?bg=<name> or the ◈ button. */
 (() => {
   const c = document.getElementById('bg');
   if (!c) return;
@@ -136,32 +136,152 @@
       };
     },
 
-    /* ---------- radar: rotating sweep with blips that light up when scanned ---------- */
-    radar() {
-      const wide = w > 820;
-      const cx = wide ? w * 0.72 : w / 2, cy = wide ? h * 0.5 : h * 0.34, R = Math.min(h * 0.5, wide ? w * 0.4 : w * 0.46);
-      const blips = Array.from({ length: 10 }, () => ({ a: rnd(0, 6.2832), r: rnd(0.2, 0.95) * R, life: 0, tag: '0x' + ((Math.random() * 0xfff) | 0).toString(16).padStart(3, '0') }));
-      let ang = rnd(0, 6.2832);
-      const TAU = 6.2832;
+    /* ---------- aurora: slow curtains of light, soft at both edges ---------- */
+    aurora() {
+      const mkTex = (rgb) => { // 1px-wide vertical alpha profile: fades in fast at the top edge, melts away downward
+        const t = document.createElement('canvas'); t.width = 1; t.height = 256; const g = t.getContext('2d');
+        for (let i = 0; i < 256; i++) { const u = i / 255, a = Math.pow(u < 0.22 ? u / 0.22 : (1 - u) / 0.78, 1.7); g.fillStyle = `rgba(${rgb},${a * 0.3})`; g.fillRect(0, i, 1, 1); }
+        return t;
+      };
+      const bands = [
+        { tex: mkTex('0,255,110'), y: 0.26, a: 70, f: 0.0035, s: 0.00042, th: 230, p: rnd(0, 6) },
+        { tex: mkTex('0,229,192'), y: 0.44, a: 60, f: 0.0028, s: -0.00035, th: 250, p: rnd(0, 6) },
+        { tex: mkTex('90,255,150'), y: 0.60, a: 80, f: 0.0042, s: 0.0005, th: 210, p: rnd(0, 6) },
+        { tex: mkTex('0,200,170'), y: 0.76, a: 50, f: 0.003, s: -0.0003, th: 230, p: rnd(0, 6) },
+      ];
+      let T = 0;
+      return (dt) => {
+        T += dt;
+        x.globalCompositeOperation = 'source-over'; x.globalAlpha = 1; x.fillStyle = '#000'; x.fillRect(0, 0, w, h);
+        x.globalCompositeOperation = 'lighter';
+        const step = 4;
+        for (const b of bands) {
+          const base = h * b.y;
+          for (let px = 0; px < w; px += step) {
+            const top = base + Math.sin(px * b.f + T * b.s + b.p) * b.a + Math.sin(px * b.f * 2.3 - T * b.s * 1.4) * b.a * 0.35;
+            const th = b.th * (0.75 + 0.25 * Math.sin(px * b.f * 1.7 + T * 0.0004 + b.p));
+            x.globalAlpha = 0.55 + 0.25 * Math.sin(px * 0.17 + T * 0.0013 + b.p * 2) + 0.2 * Math.sin(px * 0.093 - T * 0.0009 + b.p); // fine vertical rays, two incommensurate frequencies
+            x.drawImage(b.tex, 0, 0, 1, 256, px, top, step, th);
+          }
+        }
+        x.globalAlpha = 1; x.globalCompositeOperation = 'source-over';
+      };
+    },
+
+    /* ---------- logs: system log lines that type themselves in, linger, then fade ---------- */
+    logs() {
+      const FS = 12, RH = 22, CH = FS * 0.6;
+      const cols = Math.max(1, Math.floor(w / 400)), rows = Math.floor(h / RH), cw = w / cols, maxChars = Math.floor((cw - 36) / CH);
+      const n = (a, b) => ((Math.random() * (b - a + 1)) | 0) + a;
+      const hex = () => Array.from({ length: 8 }, () => n(16, 255).toString(16)).join(' ');
+      const TPL = [
+        () => ['[  OK  ] Started OpenSSH server daemon.', '0,255,100'],
+        () => [`sshd[${n(900, 4999)}]: Accepted publickey for deploy from 10.0.0.${n(2, 99)}`, '0,229,192'],
+        () => [`fail2ban.actions: NOTICE [sshd] Ban 203.0.113.${n(2, 250)}`, '255,190,60'],
+        () => [`ufw: [BLOCK] IN=eth0 SRC=198.51.100.${n(2, 250)} DPT=${pick([23, 3389, 445])}`, '255,190,60'],
+        () => [`tls: handshake TLSv1.3 TLS_AES_256_GCM_SHA384 ok (${n(8, 40)}ms)`, '0,255,100'],
+        () => ['systemd[1]: Reached target Multi-User System.', '0,255,100'],
+        () => [`cron[${n(300, 999)}]: (root) CMD (/usr/local/bin/backup.sh)`, '0,229,192'],
+        () => [`argon2id: password hash verified in ${n(40, 120)}ms`, '0,255,100'],
+        () => ['$ sudo apt update && sudo apt upgrade -y', '170,255,190'],
+        () => [`0x${n(4096, 65535).toString(16)}: ${hex()}`, '0,200,140'],
+        () => ['gpg: Good signature from "bachns"', '0,229,192'],
+        () => [`rsync: ${n(200, 4000)} files transferred, 0 errors`, '0,255,100'],
+        () => [`nginx: 200 GET /blog/ssh-hardening/ ${n(2, 40)}ms`, '0,229,192'],
+        () => [`$ openssl rand -hex 16  →  ${Array.from({ length: 16 }, () => n(16, 255).toString(16)).join('')}`, '170,255,190'],
+        () => [`kernel: audit: type=1105 pam_unix session opened uid=${n(0, 1000)}`, '0,200,140'],
+      ];
+      const lines = [], occ = new Set();
+      const spawn = () => {
+        for (let t = 0; t < 14; t++) {
+          const c = (Math.random() * cols) | 0, r = n(3, Math.max(4, rows - 2)), key = c + ':' + r;
+          if (occ.has(key)) continue;
+          const [txt, rgb] = pick(TPL)();
+          occ.add(key);
+          lines.push({ key, x: c * cw + 18, y: r * RH, text: txt.slice(0, maxChars), rgb, age: 0, type: rnd(900, 1700), hold: rnd(3000, 7000), fade: 1600 });
+          return;
+        }
+      };
+      let acc = 0;
       return (dt) => {
         x.fillStyle = '#000'; x.fillRect(0, 0, w, h);
-        ang = (ang + dt / 1000 * 0.9) % TAU;
-        x.strokeStyle = 'rgba(0,255,65,0.2)'; x.lineWidth = 1;
-        for (let k = 1; k <= 4; k++) { x.beginPath(); x.arc(cx, cy, R * k / 4, 0, TAU); x.stroke(); }
-        x.beginPath(); x.moveTo(cx - R, cy); x.lineTo(cx + R, cy); x.moveTo(cx, cy - R); x.lineTo(cx, cy + R); x.stroke();
-        for (let t = 0; t < 72; t++) { const a = t * TAU / 72, l = t % 6 === 0 ? 14 : 6; x.beginPath(); x.moveTo(cx + Math.cos(a) * R, cy + Math.sin(a) * R); x.lineTo(cx + Math.cos(a) * (R - l), cy + Math.sin(a) * (R - l)); x.stroke(); }
-        for (let i = 0; i < 34; i++) { // sweep trail
-          x.fillStyle = `rgba(0,255,65,${(1 - i / 34) * 0.2})`; x.beginPath(); x.moveTo(cx, cy);
-          x.arc(cx, cy, R, ang - (i + 1) * 0.03, ang - i * 0.03); x.closePath(); x.fill();
+        x.font = `${FS}px "JetBrains Mono", monospace`; x.textBaseline = 'top';
+        acc += dt;
+        while (acc > 260) { acc -= 260; if (lines.length < cols * rows * 0.26) spawn(); }
+        for (let i = lines.length - 1; i >= 0; i--) {
+          const l = lines[i]; l.age += dt;
+          if (l.age > l.type + l.hold + l.fade) { occ.delete(l.key); lines.splice(i, 1); continue; }
+          const typing = l.age < l.type, chars = typing ? Math.floor(l.text.length * l.age / l.type) : l.text.length;
+          const alpha = l.age > l.type + l.hold ? 1 - (l.age - l.type - l.hold) / l.fade : 1;
+          x.fillStyle = `rgba(${l.rgb},${alpha * 0.6})`; x.fillText(l.text.slice(0, chars), l.x, l.y);
+          if (typing) { x.fillStyle = `rgba(${l.rgb},0.9)`; x.fillRect(l.x + chars * CH, l.y + 1, CH, FS); }
         }
-        x.strokeStyle = 'rgba(160,255,190,0.85)'; x.lineWidth = 1.5; x.beginPath(); x.moveTo(cx, cy); x.lineTo(cx + Math.cos(ang) * R, cy + Math.sin(ang) * R); x.stroke();
-        x.font = '11px "JetBrains Mono", monospace';
-        for (const b of blips) {
-          let diff = (ang - b.a + TAU) % TAU; if (diff < 0.09) b.life = 1; else b.life = Math.max(0, b.life - dt / 1000 * 0.45);
-          if (b.life <= 0) continue;
-          const px = cx + Math.cos(b.a) * b.r, py = cy + Math.sin(b.a) * b.r;
-          x.shadowColor = '#00ff41'; x.shadowBlur = 12; x.fillStyle = `rgba(160,255,190,${b.life})`; x.beginPath(); x.arc(px, py, 3.5, 0, TAU); x.fill(); x.shadowBlur = 0;
-          x.fillStyle = `rgba(0,229,192,${b.life * 0.9})`; x.fillText(b.tag, px + 9, py - 4);
+      };
+    },
+
+    /* ---------- waves: oscilloscope — layered signals over a faint grid ---------- */
+    waves() {
+      let T = 0;
+      const L = [
+        { amp: 0.16, f: 0.006, s: 0.0011, c: '0,255,100', lw: 2.2, o: 1, glow: 14 },
+        { amp: 0.11, f: 0.009, s: -0.0016, c: '0,229,192', lw: 1.6, o: 0.8 },
+        { amp: 0.20, f: 0.0035, s: 0.0007, c: '90,255,150', lw: 1.2, o: 0.55 },
+        { amp: 0.07, f: 0.014, s: 0.0022, c: '0,255,100', lw: 1, o: 0.4 },
+        { amp: 0.13, f: 0.005, s: -0.0009, c: '0,180,160', lw: 1, o: 0.35 },
+      ];
+      return (dt) => {
+        T += dt;
+        x.globalCompositeOperation = 'source-over'; x.fillStyle = '#000'; x.fillRect(0, 0, w, h);
+        const cy = h / 2; x.lineWidth = 1;
+        x.strokeStyle = 'rgba(0,255,100,0.055)';
+        x.beginPath();
+        for (let gx = 0; gx <= w; gx += 60) { x.moveTo(gx, 0); x.lineTo(gx, h); }
+        for (let gy = cy % 60; gy <= h; gy += 60) { x.moveTo(0, gy); x.lineTo(w, gy); }
+        x.stroke();
+        x.strokeStyle = 'rgba(0,255,100,0.14)'; x.beginPath(); x.moveTo(0, cy); x.lineTo(w, cy); x.stroke();
+        const mod = mouse.y > 0 ? 0.8 + (1 - mouse.y / h) * 0.7 : 1;
+        x.globalCompositeOperation = 'lighter';
+        for (const l of L) {
+          x.beginPath();
+          for (let px = 0; px <= w; px += 6) {
+            const v = Math.sin(px * l.f + T * l.s) * 0.6 + Math.sin(px * l.f * 2.1 - T * l.s * 1.3) * 0.3 + Math.sin(px * l.f * 0.45 + T * l.s * 0.6) * 0.4;
+            px ? x.lineTo(px, cy + h * l.amp * mod * v) : x.moveTo(px, cy + h * l.amp * mod * v);
+          }
+          x.strokeStyle = `rgba(${l.c},${l.o})`; x.lineWidth = l.lw;
+          x.shadowColor = `rgb(${l.c})`; x.shadowBlur = l.glow || 0; x.stroke(); x.shadowBlur = 0;
+        }
+        x.globalCompositeOperation = 'source-over';
+      };
+    },
+
+    /* ---------- hexgrid: honeycomb lit by expanding ripples (random + cursor) ---------- */
+    hexgrid() {
+      const R = w < 600 ? 22 : 28, hw = Math.sqrt(3) * R, vh = 1.5 * R, LIFE = 3800, SPEED = 0.28;
+      const cells = [];
+      for (let row = -1; row * vh < h + R; row++) for (let col = -1; col * hw < w + hw; col++) cells.push({ x: col * hw + (row & 1 ? hw / 2 : 0), y: row * vh });
+      const V = Array.from({ length: 6 }, (_, k) => { const a = Math.PI / 6 + k * Math.PI / 3; return [Math.cos(a) * R * 0.94, Math.sin(a) * R * 0.94]; });
+      const hexPath = (cx, cy) => { x.moveTo(cx + V[0][0], cy + V[0][1]); for (let k = 1; k < 6; k++) x.lineTo(cx + V[k][0], cy + V[k][1]); x.closePath(); };
+      const ripples = []; let spawnT = 1400, lx = -999, ly = -999;
+      const add = (px, py) => { ripples.push({ x: px, y: py, age: 0 }); if (ripples.length > 7) ripples.shift(); };
+      const lit = [];
+      return (dt) => {
+        x.fillStyle = '#000'; x.fillRect(0, 0, w, h);
+        spawnT += dt; if (spawnT > 1500) { spawnT = 0; add(rnd(0, w), rnd(0, h)); }
+        if (mouse.x > 0 && Math.hypot(mouse.x - lx, mouse.y - ly) > 140) { lx = mouse.x; ly = mouse.y; add(lx, ly); }
+        for (let i = ripples.length - 1; i >= 0; i--) { ripples[i].age += dt; if (ripples[i].age > LIFE) ripples.splice(i, 1); }
+        x.lineWidth = 1; x.strokeStyle = 'rgba(0,255,100,0.075)'; x.beginPath();
+        lit.length = 0;
+        for (const c of cells) {
+          hexPath(c.x, c.y);
+          let I = 0;
+          for (const r of ripples) { const diff = Math.hypot(c.x - r.x, c.y - r.y) - r.age * SPEED; I += Math.exp(-(diff * diff) / 2888) * (1 - r.age / LIFE); }
+          if (I > 0.04) lit.push([c, Math.min(1, I)]);
+        }
+        x.stroke();
+        for (const [c, I] of lit) {
+          x.beginPath(); hexPath(c.x, c.y);
+          x.fillStyle = `rgba(0,255,120,${I * 0.16})`; x.fill();
+          x.strokeStyle = `rgba(120,255,170,${0.15 + I * 0.8})`; x.stroke();
         }
       };
     },
