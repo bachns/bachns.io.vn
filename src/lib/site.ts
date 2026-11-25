@@ -2,21 +2,19 @@ import { getCollection, type CollectionEntry } from 'astro:content';
 
 export const SITE = {
   title: 'bachns',
-  tagline: 'Security · Hacking · Sysadmin · Linux · Programming · Cryptography',
-  description: 'A personal blog about information security, hacking, system administration, Linux, programming, cryptography and technology.',
+  tagline: 'Security · Sysadmin · Linux · Programming · Cryptography',
+  description: 'A personal blog about information security, system administration, Linux, programming, cryptography and technology.',
   author: 'bachns',
-  github: 'https://github.com/bachns',
   avatar: '/images/avatar.jpg',
   name: 'Bach Nguyen',
   altName: 'Bách Nguyễn',
   position: 'Developer · Security & Systems Enthusiast',
   location: 'Hanoi, Vietnam',
-  bio: 'I love technology, books and coffee. I write about security, hacking, system administration, Linux, programming and cryptography — notes from my own journey of learning and building.',
+  bio: 'I love technology, books and coffee. I write about security, system administration, Linux, programming and cryptography — notes from my own journey of learning and building.',
 };
 
 export const CATEGORIES = {
   'security':     { name: 'Security',     icon: '🛡️', desc: 'Information security, defense, blue team and vulnerability analysis.' },
-  'hacking':      { name: 'Hacking',      icon: '💀', desc: 'Pentesting, red team, CTF and exploitation (for educational purposes).' },
   'sysadmin':     { name: 'Sysadmin',     icon: '🖧', desc: 'System and network administration, servers, DevOps and automation.' },
   'linux':        { name: 'Linux',        icon: '🐧', desc: 'Kernel, shell, command-line tools and Linux tips.' },
   'programming':  { name: 'Programming',  icon: '⌨️', desc: 'Python, C/C++, Go, Rust, web development and software engineering.' },

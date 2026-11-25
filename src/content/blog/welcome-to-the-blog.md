@@ -6,12 +6,11 @@ category: tech
 tags: [blog, introduction]
 ---
 
-This is where I take notes on my journey through **security**, **systems** and **programming**.
+This is where I take notes on my journey through **security**, **systems**, **Linux**, **programming** and **cryptography**.
 
 ## What you will find here
 
 - 🛡️ **Security** – defense, vulnerability analysis, hardening.
-- 💀 **Hacking** – CTF writeups, pentest labs.
 - 🖧 **Sysadmin** – servers, networking, automation.
 - 🐧 **Linux** – the command line and handy tips.
 - ⌨️ **Programming** – Python, C, Go, web.
@@ -26,7 +25,7 @@ Create a `.md` file in `src/content/blog/` with this frontmatter:
 title: "Title"
 description: "Short description"
 date: 2026-11-25
-category: linux   # security | hacking | sysadmin | linux | programming | cryptography | tech
+category: linux   # security | sysadmin | linux | programming | cryptography | tech
 tags: [bash, tips]
 draft: false
 ---

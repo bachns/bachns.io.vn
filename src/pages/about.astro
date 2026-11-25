@@ -1,20 +1,17 @@
 ---
 import Base from '../layouts/Base.astro';
-import { SITE } from '../lib/site';
 ---
 <Base title="About" description="About the author">
   <div class="container narrow">
     <div class="page-title"><h1>~/about</h1></div>
     <article class="prose" style="margin-top:20px">
       <p>Hi, I'm <strong>bachns</strong>. This blog is where I write down what I learn about
-      <strong>security</strong>, <strong>hacking</strong>, <strong>system administration</strong>, <strong>Linux</strong>,
+      <strong>security</strong>, <strong>system administration</strong>, <strong>Linux</strong>,
       <strong>programming</strong>, <strong>cryptography</strong> and <strong>technology</strong>.</p>
       <h2>Goals</h2>
-      <ul><li>Keep notes so I remember them, and share them back with the community.</li><li>CTF writeups, labs, and experiments in authorized environments.</li><li>Share useful tools, scripts and configurations.</li></ul>
-      <h2>Disclaimer</h2>
-      <blockquote>All offensive-security content is for learning, research and defense only. Practice only on systems you own or have written permission to test.</blockquote>
+      <ul><li>Keep notes so I remember them, and share them back with the community.</li><li>Hands-on labs and experiments in environments I own.</li><li>Share useful tools, scripts and configurations.</li></ul>
       <h2>Contact</h2>
-      <ul><li>GitHub: <a href={SITE.github}>{SITE.github}</a></li><li>RSS: <a href="/rss.xml">/rss.xml</a></li></ul>
+      <ul><li>RSS: <a href="/rss.xml">/rss.xml</a></li></ul>
     </article>
   </div>
 </Base>

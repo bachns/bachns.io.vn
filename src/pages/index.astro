@@ -10,18 +10,24 @@ const count = (k: string) => posts.filter((p) => p.data.category === k).length;
     <div class="hero-grid">
       <div class="hero-text">
         <p class="hero-eyebrow" data-type>Hi, my name is</p>
-        <h1 class="hero-name" data-type>{SITE.name}</h1>
+        <h1 class="hero-name" data-type data-text={SITE.name}>{SITE.name}</h1>
         <p class="hero-alt" data-type>{SITE.altName}</p>
         <p class="hero-role" data-type>{SITE.position}</p>
         <p class="hero-bio" data-type>{SITE.bio}</p>
         <div class="hero-cta">
           <a class="btn" href="/blog/">Read the blog</a>
           <a class="btn ghost" href="/about/">About me</a>
-          <a class="btn ghost" href={SITE.github}>GitHub</a>
         </div>
+        <div class="status"><span><i class="dot"></i>online</span><span><b>{posts.length}</b> posts</span><span><b>{Object.keys(CATEGORIES).length}</b> topics</span><span>📍 {SITE.location}</span></div>
       </div>
       <div class="hero-photo">
-        <div class="avatar"><img src={SITE.avatar} alt={`${SITE.name} — profile photo`} width="768" height="768" fetchpriority="high" /></div>
+        <div class="avatar-wrap">
+          <div class="avatar"><img src={SITE.avatar} alt={`${SITE.name} — profile photo`} width="768" height="768" fetchpriority="high" /></div>
+          <span class="chip c1">$ sudo security</span>
+          <span class="chip c2">🐧 linux</span>
+          <span class="chip c3">🔐 AES-256</span>
+          <span class="chip c4">&lt;/&gt; code</span>
+        </div>
       </div>
     </div>
   </section>
@@ -60,6 +66,12 @@ const count = (k: string) => posts.filter((p) => p.data.category === k).length;
         tick();
       };
       next();
+    })();
+    (() => {
+      const n = document.querySelector('.hero-name'); if (!n) return;
+      const run = () => { n.dataset.text = n.textContent.replace('▍', '').trim(); n.classList.add('glitching'); setTimeout(() => n.classList.remove('glitching'), 450); };
+      n.addEventListener('mouseenter', run);
+      setTimeout(() => { run(); setInterval(run, 7000); }, 5000);
     })();
   </script>
 </Base>

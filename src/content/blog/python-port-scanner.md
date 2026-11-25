@@ -23,4 +23,4 @@ if __name__ == "__main__":
     print(scan("127.0.0.1"))
 ```
 
-This works fine for learning; for real scans use `nmap` or `masscan`.
+This is meant for learning and for checking hosts you own or administer.

@@ -23,9 +23,6 @@ const c = CATEGORIES[post.data.category];
       <h1>{post.data.title}</h1>
       <div class="tags">{post.data.tags.map((t) => <a class="tag" href={`/tag/${t}/`}>{t}</a>)}</div>
     </header>
-    {post.data.category === 'hacking' && (
-      <div class="disclaimer">⚠️ This content is for educational purposes and for testing on systems you own or are explicitly authorized to test. The author is not responsible for misuse.</div>
-    )}
     <article class="prose"><Content /></article>
     <nav class="post-nav" style="display:grid">
       {older ? <a href={`/blog/${older.id}/`}><small>← Older post</small>{older.data.title}</a> : <span></span>}
