@@ -2,28 +2,6 @@
 import Base from '../layouts/Base.astro';
 import { CATEGORIES, SITE } from '../lib/site';
 const topics = Object.entries(CATEGORIES);
-const stack = [
-  { icon: '📈', title: 'Monitoring & Observability', rgb: '0,255,110', items: [
-    ['Monitoring', 'Watching systems and services so problems show up before users notice them.'],
-    ['Prometheus', 'Open-source metrics collection, time-series storage and alerting.'],
-    ['Grafana', 'Dashboards and visualization for metrics, logs and business data.'],
-    ['ELK Stack', 'Elasticsearch, Logstash and Kibana for centralized log search and analysis.'],
-  ] },
-  { icon: '🏛️', title: 'Data Warehouse & Databases', rgb: '255,196,60', items: [
-    ['ClickHouse', 'A column-oriented database built for very fast analytical (OLAP) queries, the engine behind my data warehouse work.'],
-    ['Data Warehouse', 'Modeling and storing data so teams can analyze it quickly and consistently.'],
-    ['Databases', 'Storing, modeling and querying data reliably, from transactional systems to analytics.'],
-  ] },
-  { icon: '🌊', title: 'Big Data & Streaming', rgb: '0,229,192', items: [
-    ['Big Data', 'Collecting and processing data that is too large or too fast for traditional tools.'],
-    ['Apache Kafka', 'A distributed event streaming platform for moving data between systems in real time.'],
-  ] },
-  { icon: '☸️', title: 'DevOps & Infrastructure', rgb: '90,170,255', items: [
-    ['DevOps', 'Automation, delivery pipelines and shared ownership between development and operations.'],
-    ['Kubernetes (K8s)', 'Container orchestration: deploying, scaling and operating applications across clusters.'],
-  ] },
-];
-
 const chips = ['Prometheus', 'Grafana', 'ELK Stack', 'Apache Kafka', 'ClickHouse', 'Kubernetes', 'Big Data', 'DevOps', 'Monitoring', 'Databases'];
 ---
 <Base title="About" description="About Bach Nguyen, a developer who loves technology, books and coffee, writing from Hanoi, Vietnam.">
@@ -44,12 +22,11 @@ const chips = ['Prometheus', 'Grafana', 'ELK Stack', 'Apache Kafka', 'ClickHouse
       Grab a coffee if you like, and let me introduce myself.
     </p>
 
-    <div class="facts">
-      <div class="fact"><small>Based in</small><b>Hanoi, Vietnam</b><span>about 100 km from my hometown</span></div>
-      <div class="fact"><small>Hometown</small><b>Hung Yen Province</b><span>the old Thai Binh Province</span></div>
-      <div class="fact"><small>Studied</small><b>Information Technology</b><span><a href="https://mta.edu.vn/">Military Technical Academy</a></span></div>
-      <div class="fact"><small>Fueled by</small><b>Coffee &amp; books</b><span>and a little volleyball</span></div>
-    </div>
+    <p class="about-text">
+      I'm based in Hanoi, Vietnam, about 100 km from my hometown in Hung Yen Province, the old Thai Binh Province.
+      I studied Information Technology at the <a href="https://mta.edu.vn/">Military Technical Academy</a>,
+      and these days I'm fueled by coffee and books, with a little volleyball on the side.
+    </p>
 
     <div class="section-title">// tech i work with</div>
     <p class="about-text">
@@ -58,44 +35,11 @@ const chips = ['Prometheus', 'Grafana', 'ELK Stack', 'Apache Kafka', 'ClickHouse
     </p>
     <div class="chip-row">{chips.map((c) => <span class="tchip">{c}</span>)}</div>
 
-    <div class="stack">
-      {stack.map((g) => (
-        <section class="stack-card" style={`--c: ${g.rgb}`}>
-          <header><span class="ic">{g.icon}</span><h3>{g.title}</h3></header>
-          <ul>
-            {g.items.map(([name, desc]) => (
-              <li><b>{name}</b><span>{desc}</span></li>
-            ))}
-          </ul>
-        </section>
-      ))}
-    </div>
-
-    <figure class="flow">
-      <figcaption>A typical way these pieces fit together</figcaption>
-      <div class="flow-row">
-        <div class="flow-col">
-          <small>Collect</small>
-          <span>Prometheus<i>metrics</i></span>
-          <span>Logstash<i>logs</i></span>
-          <span>Kafka<i>events</i></span>
-        </div>
-        <div class="flow-arrow" aria-hidden="true">→</div>
-        <div class="flow-col">
-          <small>Store &amp; process</small>
-          <span>ClickHouse<i>analytics</i></span>
-          <span>Elasticsearch<i>search</i></span>
-          <span>Databases<i>data</i></span>
-        </div>
-        <div class="flow-arrow" aria-hidden="true">→</div>
-        <div class="flow-col">
-          <small>Visualize &amp; alert</small>
-          <span>Grafana<i>dashboards</i></span>
-          <span>Kibana<i>log explorer</i></span>
-        </div>
-      </div>
-      <div class="flow-base">Running on <b>Kubernetes</b> and delivered with <b>DevOps</b> practices</div>
-    </figure>
+    <p class="about-text">
+      On the observability side I work with monitoring, Prometheus, Grafana and the ELK Stack.
+      On the data side it is Big Data, Apache Kafka, ClickHouse as a data warehouse, and databases.
+      And on the infrastructure side, DevOps and Kubernetes (K8s).
+    </p>
 
     <div class="section-title">// why this blog</div>
     <p class="about-text">
