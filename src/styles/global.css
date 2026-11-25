@@ -221,10 +221,6 @@ footer .container { display: flex; justify-content: center; text-align: center; 
 .tl h3 { margin: 4px 0 6px; font-size: 19px; color: var(--ink); }
 .tl p { margin: 0; color: var(--ink-dim); font-size: 15.5px; }
 .tl strong { color: var(--ink); } .tl a, .about-text a { color: var(--accent2); } .tl a:hover, .about-text a:hover { color: var(--accent); }
-.hobbies { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; }
-.hobbies .card h3 { margin: 12px 0 6px; font-size: 18px; color: var(--ink); }
-.hobbies .card p { margin: 0; font-size: 14.5px; line-height: 1.7; }
-.hobbies .ic { display: grid; place-items: center; width: 42px; height: 42px; font-size: 21px; border-radius: 12px; background: rgba(0, 255, 120, .1); border: 1px solid rgba(0, 255, 120, .25); }
 @media (max-width: 560px) { .about-lead { font-size: 17px; } .timeline { padding-left: 24px; } .tl::before { left: -23px; } .timeline::before { left: 5px; } }
 
 /* tech stack */
