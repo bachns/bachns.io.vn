@@ -28,6 +28,7 @@ const nav = [
   </script>
 </head>
 <body>
+  <canvas id="matrix" aria-hidden="true"></canvas>
   <header class="site-header">
     <div class="container">
       <a href="/" class="logo"><span>root@</span>{SITE.title}<span>:~$</span><i class="cursor"></i></a>
@@ -41,11 +42,22 @@ const nav = [
   <main><slot /></main>
   <footer>
     <div class="container">
-      <span>© {new Date().getFullYear()} {SITE.title} — bachns.io.vn</span>
+      <span>© {new Date().getFullYear()} {SITE.name} — bachns.io.vn</span>
       <span>Built with Astro · <a href="/rss.xml">RSS</a> · <a href={SITE.github}>GitHub</a></span>
     </div>
   </footer>
   <script is:inline>
+    (() => {
+      const c = document.getElementById('matrix'); if (!c || matchMedia('(prefers-reduced-motion: reduce)').matches) { c && c.remove(); return; }
+      const x = c.getContext('2d'); const chars = '01アイウエオカキクケコ{}[]<>/\\$#'.split(''); const size = 16; let cols, drops, w, h;
+      const resize = () => { w = c.width = innerWidth; h = c.height = innerHeight; cols = Math.ceil(w / size); drops = Array.from({ length: cols }, () => Math.random() * -50); };
+      resize(); addEventListener('resize', resize);
+      setInterval(() => {
+        if (document.hidden || document.documentElement.dataset.theme === 'light') return;
+        x.fillStyle = 'rgba(0,0,0,.08)'; x.fillRect(0, 0, w, h); x.fillStyle = '#00ff41'; x.font = size + 'px monospace';
+        drops.forEach((d, i) => { x.fillText(chars[Math.floor(Math.random() * chars.length)], i * size, d * size); drops[i] = d * size > h && Math.random() > .975 ? 0 : d + 1; });
+      }, 60);
+    })();
     document.getElementById('theme').addEventListener('click', () => {
       const r = document.documentElement; const n = r.dataset.theme === 'dark' ? 'light' : 'dark';
       r.dataset.theme = n; try { localStorage.setItem('theme', n); } catch {}

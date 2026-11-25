@@ -6,6 +6,12 @@ export const SITE = {
   description: 'A personal blog about information security, hacking, system administration, Linux, programming, cryptography and technology.',
   author: 'bachns',
   github: 'https://github.com/bachns',
+  avatar: '/images/avatar.jpg',
+  name: 'Bach Nguyen',
+  altName: 'Bách Nguyễn',
+  position: 'Developer · Security & Systems Enthusiast',
+  location: 'Hanoi, Vietnam',
+  bio: 'I love technology, books and coffee. I write about security, hacking, system administration, Linux, programming and cryptography — notes from my own journey of learning and building.',
 };
 
 export const CATEGORIES = {

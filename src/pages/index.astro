@@ -7,19 +7,23 @@ const count = (k: string) => posts.filter((p) => p.data.category === k).length;
 ---
 <Base>
   <section class="hero container">
-    <div class="term">
-      <div class="term-bar"><i></i><i></i><i></i><b>bachns@io.vn: ~</b></div>
-      <div class="term-body">
-        <div><span class="p">$</span> whoami</div>
-        <div class="o">bachns — security enthusiast, sysadmin &amp; developer</div>
-        <div><span class="p">$</span> cat topics.txt</div>
-        <div class="o"><span class="k">security</span> · <span class="k">hacking</span> · <span class="k">sysadmin</span> · <span class="k">linux</span> · <span class="k">programming</span> · <span class="k">cryptography</span> · <span class="k">tech</span></div>
-        <div><span class="p">$</span> ls posts/ | wc -l</div>
-        <div class="o">{posts.length}</div>
+    <div class="hero-grid">
+      <div class="hero-text">
+        <p class="hero-eyebrow" data-type>Hi, my name is</p>
+        <h1 class="hero-name" data-type>{SITE.name}</h1>
+        <p class="hero-alt" data-type>{SITE.altName}</p>
+        <p class="hero-role" data-type>{SITE.position}</p>
+        <p class="hero-bio" data-type>{SITE.bio}</p>
+        <div class="hero-cta">
+          <a class="btn" href="/blog/">Read the blog</a>
+          <a class="btn ghost" href="/about/">About me</a>
+          <a class="btn ghost" href={SITE.github}>GitHub</a>
+        </div>
+      </div>
+      <div class="hero-photo">
+        <div class="avatar"><img src={SITE.avatar} alt={`${SITE.name} — profile photo`} width="768" height="768" fetchpriority="high" /></div>
       </div>
     </div>
-    <h1>Learn, practice and <span style="color:var(--accent)">share</span>.</h1>
-    <p class="lead">{SITE.description}</p>
   </section>
 
   <div class="container">
@@ -34,4 +38,28 @@ const count = (k: string) => posts.filter((p) => p.data.category === k).length;
     <div class="posts">{posts.slice(0, 8).map((p) => <PostCard post={p} />)}</div>
     <p style="margin-top:24px"><a href="/blog/">→ View all posts</a></p>
   </div>
+  <script is:inline>
+    (() => {
+      if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      const els = [...document.querySelectorAll('[data-type]')];
+      const full = els.map((e) => e.textContent.trim());
+      els.forEach((e) => (e.textContent = ''));
+      const caret = document.createElement('span'); caret.className = 'caret'; caret.textContent = '▍';
+      const SPEED = 110;
+      let i = 0;
+      const next = () => {
+        if (i >= els.length) return;
+        const el = els[i], words = full[i].split(' '); let n = 0;
+        el.appendChild(caret);
+        const tick = () => {
+          if (n < words.length) {
+            caret.insertAdjacentText('beforebegin', (n ? ' ' : '') + words[n++]);
+            setTimeout(tick, SPEED);
+          } else { i++; if (i >= els.length) caret.remove(); next(); }
+        };
+        tick();
+      };
+      next();
+    })();
+  </script>
 </Base>
