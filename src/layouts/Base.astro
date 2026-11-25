@@ -1,0 +1,55 @@
+---
+import '../styles/global.css';
+import { SITE } from '../lib/site';
+interface Props { title?: string; description?: string; type?: 'website' | 'article'; }
+const { title, description = SITE.description, type = 'website' } = Astro.props;
+const full = title ? `${title} | ${SITE.title}` : `${SITE.title} — ${SITE.tagline}`;
+const canonical = new URL(Astro.url.pathname, Astro.site);
+const path = Astro.url.pathname;
+const nav = [
+  ['/blog/', 'blog'], ['/category/', 'chuyên-mục'], ['/tag/', 'thẻ'], ['/archive/', 'lưu-trữ'], ['/search/', 'tìm-kiếm'], ['/about/', 'about'],
+];
+---
+<!doctype html>
+<html lang="vi" data-theme="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{full}</title>
+  <meta name="description" content={description} />
+  <link rel="canonical" href={canonical} />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="alternate" type="application/rss+xml" title={SITE.title} href="/rss.xml" />
+  <meta property="og:title" content={full} /><meta property="og:description" content={description} />
+  <meta property="og:type" content={type} /><meta property="og:url" content={canonical} />
+  <meta name="theme-color" content="#0b0f14" />
+  <script is:inline>
+    try { const t = localStorage.getItem('theme'); if (t) document.documentElement.dataset.theme = t; } catch {}
+  </script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <a href="/" class="logo"><span>root@</span>{SITE.title}<span>:~$</span><i class="cursor"></i></a>
+      <nav>
+        {nav.map(([href, label]) => <a href={href} class:list={{ active: path.startsWith(href) }}>{label}</a>)}
+        <a href="/rss.xml" title="RSS">rss</a>
+        <button class="icon-btn" id="theme" aria-label="Đổi giao diện">◐</button>
+      </nav>
+    </div>
+  </header>
+  <main><slot /></main>
+  <footer>
+    <div class="container">
+      <span>© {new Date().getFullYear()} {SITE.title} — bachns.io.vn</span>
+      <span>Built with Astro · <a href="/rss.xml">RSS</a> · <a href={SITE.github}>GitHub</a></span>
+    </div>
+  </footer>
+  <script is:inline>
+    document.getElementById('theme').addEventListener('click', () => {
+      const r = document.documentElement; const n = r.dataset.theme === 'dark' ? 'light' : 'dark';
+      r.dataset.theme = n; try { localStorage.setItem('theme', n); } catch {}
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,28 @@
+---
+import Base from '../layouts/Base.astro';
+import { CATEGORIES, fmtDate, getPosts } from '../lib/site';
+const index = (await getPosts()).map((p) => ({
+  url: `/blog/${p.id}/`, title: p.data.title, desc: p.data.description, tags: p.data.tags,
+  cat: CATEGORIES[p.data.category].name, date: fmtDate(p.data.date),
+}));
+---
+<Base title="Tìm kiếm">
+  <div class="container narrow">
+    <div class="page-title"><h1>~/tìm-kiếm</h1></div>
+    <input class="search" id="q" type="search" placeholder="grep -ri &quot;từ khoá&quot; ..." autofocus style="margin-top:20px" />
+    <div class="posts" id="results" style="margin-top:22px"></div>
+  </div>
+  <script define:vars={{ index }}>
+    const norm = (s) => s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/đ/g, 'd');
+    const q = document.getElementById('q'), out = document.getElementById('results');
+    const esc = (s) => s.replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+    function run() {
+      const terms = norm(q.value).split(/\s+/).filter(Boolean);
+      const hits = terms.length ? index.filter((p) => { const h = norm([p.title, p.desc, p.cat, p.tags.join(' ')].join(' ')); return terms.every((t) => h.includes(t)); }) : [];
+      out.innerHTML = hits.map((p) => `<article class="card"><div class="meta"><span class="badge">${esc(p.cat)}</span><span>${p.date}</span></div><h3><a href="${p.url}">${esc(p.title)}</a></h3><p>${esc(p.desc)}</p></article>`).join('')
+        || (terms.length ? '<p>Không tìm thấy kết quả.</p>' : '');
+    }
+    q.addEventListener('input', run);
+    const init = new URLSearchParams(location.search).get('q'); if (init) { q.value = init; run(); }
+  </script>
+</Base>

@@ -1,0 +1,17 @@
+---
+import Base from '../layouts/Base.astro';
+import { fmtDate, getPosts } from '../lib/site';
+const posts = await getPosts();
+const byYear = new Map<number, typeof posts>();
+posts.forEach((p) => { const y = p.data.date.getFullYear(); byYear.set(y, [...(byYear.get(y) ?? []), p]); });
+---
+<Base title="Lưu trữ">
+  <div class="container narrow archive">
+    <div class="page-title"><h1>~/lưu-trữ</h1></div>
+    {[...byYear].map(([y, ps]) => (
+      <div><div class="section-title">{y}</div>
+        <ul>{ps.map((p) => <li><time>{fmtDate(p.data.date)}</time><a href={`/blog/${p.id}/`}>{p.data.title}</a></li>)}</ul>
+      </div>
+    ))}
+  </div>
+</Base>

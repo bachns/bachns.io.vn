@@ -1,0 +1,37 @@
+---
+import Base from '../layouts/Base.astro';
+import PostCard from '../components/PostCard.astro';
+import { CATEGORIES, SITE, getPosts } from '../lib/site';
+const posts = await getPosts();
+const count = (k: string) => posts.filter((p) => p.data.category === k).length;
+---
+<Base>
+  <section class="hero container">
+    <div class="term">
+      <div class="term-bar"><i></i><i></i><i></i><b>bachns@io.vn: ~</b></div>
+      <div class="term-body">
+        <div><span class="p">$</span> whoami</div>
+        <div class="o">bachns — security enthusiast, sysadmin &amp; developer</div>
+        <div><span class="p">$</span> cat topics.txt</div>
+        <div class="o"><span class="k">security</span> · <span class="k">hacking</span> · <span class="k">sysadmin</span> · <span class="k">linux</span> · <span class="k">programming</span> · <span class="k">cryptography</span> · <span class="k">tech</span></div>
+        <div><span class="p">$</span> ls posts/ | wc -l</div>
+        <div class="o">{posts.length}</div>
+      </div>
+    </div>
+    <h1>Học, thực hành và <span style="color:var(--accent)">chia sẻ</span>.</h1>
+    <p class="lead">{SITE.description}</p>
+  </section>
+
+  <div class="container">
+    <div class="section-title">// chuyên mục</div>
+    <div class="cats">
+      {Object.entries(CATEGORIES).map(([k, c]) => (
+        <a class="cat" href={`/category/${k}/`}><span class="ic">{c.icon}</span><strong>{c.name}</strong><small>{count(k)} bài</small></a>
+      ))}
+    </div>
+
+    <div class="section-title">// bài viết mới</div>
+    <div class="posts">{posts.slice(0, 8).map((p) => <PostCard post={p} />)}</div>
+    <p style="margin-top:24px"><a href="/blog/">→ Xem tất cả bài viết</a></p>
+  </div>
+</Base>
