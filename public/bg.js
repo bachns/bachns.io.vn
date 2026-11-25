@@ -1,4 +1,4 @@
-/* Animated backgrounds — one scene is picked at random per browsing session.
+/* Animated backgrounds — a scene is picked at random on every page visit (never the same one twice in a row).
    Scenes: matrix · network · stars · circuit · radar.  Override with ?bg=<name> or the ◈ button. */
 (() => {
   const c = document.getElementById('bg');
@@ -173,7 +173,8 @@
     set(v) { try { sessionStorage.setItem('bg-scene', v); } catch {} },
   };
   const q = new URLSearchParams(location.search).get('bg');
-  name = NAMES.includes(q) ? q : NAMES.includes(store.get()) ? store.get() : pick(NAMES);
+  const prev = store.get();
+  name = NAMES.includes(q) ? q : pick(NAMES.filter((n) => n !== prev)); // new random scene each visit
   store.set(name);
 
   const btn = document.getElementById('bgbtn');
@@ -194,7 +195,7 @@
     const dt = Math.min(t - last, 60);
     if (dt < 22) return;
     last = t;
-    if (document.hidden || root.dataset.theme === 'light') return;
+    if (document.hidden) return;
     scene(dt);
   };
   start();
