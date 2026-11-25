@@ -1,7 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
-import { CATEGORIES, SITE } from '../lib/site';
-const topics = Object.entries(CATEGORIES);
+import { SITE } from '../lib/site';
 const chips = ['Prometheus', 'Grafana', 'ELK Stack', 'Apache Kafka', 'ClickHouse', 'Kubernetes', 'Big Data', 'DevOps', 'Monitoring', 'Databases'];
 ---
 <Base title="About" description="About Bach Nguyen, a developer who loves technology, books and coffee, writing from Hanoi, Vietnam.">
@@ -47,14 +46,12 @@ const chips = ['Prometheus', 'Grafana', 'ELK Stack', 'Apache Kafka', 'ClickHouse
       a lot of programming, and the many moving parts of IT systems. Writing it down helps me remember it,
       and sharing it means someone else might skip a few of the wrong turns I took.
     </p>
-    <p class="about-text">Here is what you can expect:</p>
-    <div class="cats roomy">
-      {topics.map(([k, c]) => (
-        <a class="cat" href={`/category/${k}/`}><span class="ic">{c.icon}</span><strong>{c.name}</strong><small class="d">{c.desc}</small></a>
-      ))}
-    </div>
     <p class="about-text">
-      And now and then, a few random things that don't fit anywhere else. Those are often the most fun to write.
+      Here is what you can expect: notes on <a href="/category/security/">security</a>,
+      <a href="/category/sysadmin/">system administration</a>, <a href="/category/linux/">Linux</a>,
+      <a href="/category/programming/">programming</a> and <a href="/category/cryptography/">cryptography</a>,
+      plus some <a href="/category/tech/">tech</a> news and trends. And now and then, a few random things
+      that don't fit anywhere else. Those are often the most fun to write.
     </p>
 
     <div class="section-title">// my journey</div>
