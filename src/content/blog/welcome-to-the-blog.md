@@ -10,11 +10,11 @@ This is where I take notes on my journey through **security**, **systems**, **Li
 
 ## What you will find here
 
-- 🛡️ **Security** – defense, vulnerability analysis, hardening.
-- 🖧 **Sysadmin** – servers, networking, automation.
-- 🐧 **Linux** – the command line and handy tips.
-- ⌨️ **Programming** – Python, C, Go, web.
-- 🔐 **Cryptography** – from theory to practice.
+- 🛡️ **Security** - defense, vulnerability analysis, hardening.
+- 🖧 **Sysadmin** - servers, networking, automation.
+- 🐧 **Linux** - the command line and handy tips.
+- ⌨️ **Programming** - Python, C, Go, web.
+- 🔐 **Cryptography** - from theory to practice.
 
 ## How to add a new post
 

@@ -1,4 +1,4 @@
-/* Animated backgrounds — a scene is picked at random on every page visit (never the same one twice in a row).
+/* Animated backgrounds - a scene is picked at random on every page visit (never the same one twice in a row).
    Scenes: matrix · network · stars · circuit · logs · waves.  Override with ?bg=<name> or the ◈ button. */
 (() => {
   const c = document.getElementById('bg');
@@ -187,7 +187,7 @@
       };
     },
 
-    /* ---------- waves: oscilloscope — layered signals over a faint grid ---------- */
+    /* ---------- waves: oscilloscope - layered signals over a faint grid ---------- */
     waves() {
       let T = 0;
       const L = [

@@ -10,7 +10,7 @@ export const SITE = {
   altName: 'Bách Nguyễn',
   position: 'Developer · Security & Systems Enthusiast',
   location: 'Hanoi, Vietnam',
-  bio: 'I love technology, books and coffee. I write about security, system administration, Linux, programming and cryptography — notes from my own journey of learning and building.',
+  bio: 'I love technology, books and coffee. I write about security, system administration, Linux, programming and cryptography - notes from my own journey of learning and building.',
 };
 
 export const CATEGORIES = {
