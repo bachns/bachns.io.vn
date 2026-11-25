@@ -166,7 +166,7 @@
           if (occ.has(key)) continue;
           const [txt, rgb] = pick(TPL)();
           occ.add(key);
-          lines.push({ key, x: c * cw + 18, y: r * RH, text: txt.slice(0, maxChars), rgb, age: 0, type: rnd(900, 1700), hold: rnd(3000, 7000), fade: 1600 });
+          lines.push({ key, x: c * cw + 18, y: r * RH, text: txt.slice(0, maxChars), rgb, age: 0, type: rnd(900, 1700), hold: rnd(1200, 2800), fade: 800 });
           return;
         }
       };
@@ -181,8 +181,8 @@
           if (l.age > l.type + l.hold + l.fade) { occ.delete(l.key); lines.splice(i, 1); continue; }
           const typing = l.age < l.type, chars = typing ? Math.floor(l.text.length * l.age / l.type) : l.text.length;
           const alpha = l.age > l.type + l.hold ? 1 - (l.age - l.type - l.hold) / l.fade : 1;
-          x.fillStyle = `rgba(${l.rgb},${alpha * 0.6})`; x.fillText(l.text.slice(0, chars), l.x, l.y);
-          if (typing) { x.fillStyle = `rgba(${l.rgb},0.9)`; x.fillRect(l.x + chars * CH, l.y + 1, CH, FS); }
+          x.fillStyle = `rgba(${l.rgb},${alpha * 0.38})`; x.fillText(l.text.slice(0, chars), l.x, l.y);
+          if (typing) { x.fillStyle = `rgba(${l.rgb},0.55)`; x.fillRect(l.x + chars * CH, l.y + 1, CH, FS); }
         }
       };
     },
