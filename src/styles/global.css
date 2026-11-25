@@ -191,3 +191,16 @@ pre:hover .copy-btn { opacity: 1; } .copy-btn:hover { color: var(--accent); bord
 
 footer { margin-top: 90px; text-align: center; border-top: 1px solid var(--border); padding: 28px 0 40px; color: var(--muted); font: 13px var(--mono); }
 footer .container { display: flex; justify-content: center; text-align: center; flex-wrap: wrap; gap: 10px; }
+
+/* about page */
+.about-head { display: flex; gap: 28px; align-items: center; padding: 50px 0 26px; border-bottom: 1px dashed var(--glass-border); margin-bottom: 26px; }
+.about-photo { flex: none; width: 150px; aspect-ratio: 1; border-radius: 50%; overflow: hidden; border: 4px solid var(--accent); box-shadow: 0 0 30px rgba(0, 255, 0, .3); }
+.about-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.about-head h1 { margin: 0 0 4px; font-size: 28px; }
+.about-name { margin: 0; font: 700 22px var(--mono); color: var(--ink); } .about-name span { color: var(--accent); font-weight: 600; }
+.about-sub { margin: 6px 0 0; color: var(--ink-dim); } .about-loc { margin: 4px 0 0; font: 13px var(--mono); color: var(--ink-faint); }
+@media (max-width: 560px) { .about-head { flex-direction: column; text-align: center; gap: 16px; } .about-photo { width: 130px; } }
+.panel { background: linear-gradient(150deg, rgba(0, 255, 110, .05), rgba(0, 12, 6, .6)); border: 1px solid var(--glass-border); border-radius: var(--radius);
+  -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); padding: 6px 30px 22px; box-shadow: 0 8px 32px rgba(0, 0, 0, .35), inset 0 1px 0 rgba(255, 255, 255, .06); }
+.panel > :first-child { margin-top: 20px; }
+@media (max-width: 560px) { .panel { padding: 4px 18px 18px; } }

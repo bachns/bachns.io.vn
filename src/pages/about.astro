@@ -1,17 +1,51 @@
 ---
 import Base from '../layouts/Base.astro';
+import { SITE } from '../lib/site';
 ---
-<Base title="About" description="About the author">
+<Base title="About" description="About Bách Nguyễn — a developer who loves technology, books and coffee, writing from Hanoi, Vietnam.">
   <div class="container narrow">
-    <div class="page-title"><h1>~/about</h1></div>
-    <article class="prose" style="margin-top:20px">
-      <p>Hi, I'm <strong>bachns</strong>. This blog is where I write down what I learn about
-      <strong>security</strong>, <strong>system administration</strong>, <strong>Linux</strong>,
-      <strong>programming</strong>, <strong>cryptography</strong> and <strong>technology</strong>.</p>
-      <h2>Goals</h2>
-      <ul><li>Keep notes so I remember them, and share them back with the community.</li><li>Hands-on labs and experiments in environments I own.</li><li>Share useful tools, scripts and configurations.</li></ul>
+    <header class="about-head">
+      <div class="about-photo"><img src={SITE.avatar} alt={`${SITE.name} — profile photo`} width="768" height="768" /></div>
+      <div>
+        <h1>~/about</h1>
+        <p class="about-name">{SITE.name} <span>({SITE.altName})</span></p>
+        <p class="about-sub">A developer who loves technology, books and coffee.</p>
+        <p class="about-loc">📍 {SITE.location}</p>
+      </div>
+    </header>
+
+    <article class="prose panel">
+      <p>Hi, I'm <strong>Bách Nguyễn</strong> — some friends call me <em>Mr. Robot</em> — and I'm the author of this blog.
+      I'm glad you're curious about the journey behind it.</p>
+
+      <h2>About this blog</h2>
+      <p>I write here to keep, and to share, the knowledge I pick up along the way. It covers
+      <strong>technology</strong>, <strong>cryptography</strong>, <strong>programming</strong>, <strong>IT systems</strong>
+      — security, system administration and Linux in particular — and now and then, a few random things that don't fit anywhere else.</p>
+
+      <h2>About me</h2>
+      <p>I was born and raised in <strong>Thái Bình</strong>, an agricultural province about 100 km south-east of Hanoi.
+      Our local specialty is poverty, and endless rice fields where the storks fly and fly without ever finding a place to land.</p>
+      <p>I went to <strong>Hưng Nhân High School</strong>, probably the coolest school in my hometown and the one everybody
+      dreams of getting into. Besides its excellent teachers, it's famous for plenty of good-looking students.</p>
+      <p>In my final year I made a hard decision: I chose the military, and chose to study <strong>Information Technology</strong>
+      at the <strong>Military Technical Academy</strong>. It wasn't easy, but I'm always happy and proud that I made it.</p>
+
+      <h2>Beyond the keyboard</h2>
+      <ul>
+        <li><strong>Books.</strong> Reading is one of my favorite ways to learn, and a big part of how this blog gets written.</li>
+        <li><strong>Coffee.</strong> I can't say exactly when it started — probably while I was studying for the high school entrance exams,
+        when coffee helped me focus and fight off sleepiness. Today I drink it every day: morning, afternoon, and sometimes late at night.</li>
+        <li><strong>Volleyball.</strong> I'm no national star, but at my workplace I'm ranked in the top ten.
+        Standing 1.74 m tall, I'm the terror of every blocker.</li>
+      </ul>
+
       <h2>Contact</h2>
-      <ul><li>RSS: <a href="/rss.xml">/rss.xml</a></li></ul>
+      <ul>
+        <li>Email: <a href="mailto:bachns@outlook.com">bachns@outlook.com</a></li>
+        <li>Telegram: <a href="https://t.me/bachns">@bachns</a></li>
+        <li>RSS: <a href="/rss.xml">/rss.xml</a></li>
+      </ul>
     </article>
   </div>
 </Base>
