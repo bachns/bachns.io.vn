@@ -155,7 +155,7 @@
         () => [`0x${n(4096, 65535).toString(16)}: ${hex()}`, '0,200,140'],
         () => ['gpg: Good signature from "bachns"', '0,229,192'],
         () => [`rsync: ${n(200, 4000)} files transferred, 0 errors`, '0,255,100'],
-        () => [`nginx: 200 GET /blog/ssh-hardening/ ${n(2, 40)}ms`, '0,229,192'],
+        () => [`nginx: 200 GET /blog/linux-server-hardening/ ${n(2, 40)}ms`, '0,229,192'],
         () => [`$ openssl rand -hex 16  →  ${Array.from({ length: 16 }, () => n(16, 255).toString(16)).join('')}`, '170,255,190'],
         () => [`kernel: audit: type=1105 pam_unix session opened uid=${n(0, 1000)}`, '0,200,140'],
       ];

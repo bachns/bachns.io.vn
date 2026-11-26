@@ -1,5 +1,5 @@
 ---
-title: "Inspecting and Testing CRT, CRL, OCSP, and RFC 3161 TSA Services with OpenSSL"
+title: "Inspecting and Testing CRT, CRL, OCSP, and RFC 3161 TSA Services"
 description: "A practical OpenSSL reference for operating PKI validation and timestamping infrastructure: extracting AIA and CDP URLs, checking CRLs, debugging OCSP GET/POST requests, and verifying RFC 3161 timestamps."
 date: 2026-11-26
 category: cryptography
