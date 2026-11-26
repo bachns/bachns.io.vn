@@ -1,6 +1,6 @@
 :root {
   --bg: #000000; --bg2: rgba(10, 25, 47, .85); --bg3: rgba(20, 40, 60, .9); --border: rgba(0, 255, 0, .2);
-  --text: #e0f7ff; --muted: #8aa0ad; --head: #5cff95;
+  --text: #e0f7ff; --muted: #8aa0ad; --head: #00ffcc;
   --accent: #00ff00; --accent2: #22d3ee; --warn: #fbbf24; --danger: #ff5d73;
   --glow: 0 0 15px rgba(0, 255, 0, .15), inset 0 0 20px rgba(0, 255, 0, .05);
   --mono: 'JetBrains Mono', 'Fira Code', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
@@ -115,13 +115,14 @@ nav a:hover, nav a.active { background: var(--bg3); color: var(--accent); }
 
 /* article */
 .post-head { padding: 54px 0 20px; border-bottom: 1px dashed var(--border); margin-bottom: 30px; }
-.post-head h1 { font-size: clamp(26px, 4.5vw, 38px); margin: 12px 0; color: var(--ink); text-shadow: 0 0 22px rgba(0, 255, 100, .2); }
+.post-head h1 { font-size: clamp(26px, 4.5vw, 38px); margin: 12px 0; color: #ffffff; letter-spacing: -.015em; text-shadow: 0 0 26px rgba(0, 255, 100, .14); }
 .prose { font-size: 17px; }
-.prose h2 { margin-top: 2.2em; padding-bottom: 6px; border-bottom: 1px solid var(--border); color: var(--head); text-shadow: 0 0 14px rgba(0, 255, 100, .18); }
-.prose h2::before { content: '## '; color: var(--accent); font-family: var(--mono); text-shadow: 0 0 10px rgba(0, 255, 0, .4); }
-.prose h3 { margin-top: 1.7em; color: #b8ffd0; }
-.prose h3::before { content: '### '; color: var(--accent); opacity: .85; font-family: var(--mono); }
-.prose h4 { color: var(--ink); }
+.prose strong { color: #ffffff; font-weight: 600; }
+.prose h2 { margin-top: 2.2em; padding-bottom: 8px; border-bottom: 1px solid var(--border); color: #f0f7f2; letter-spacing: -.01em; text-shadow: none; }
+.prose h2::before { content: '## '; color: var(--accent); font-family: var(--mono); font-size: .85em; font-weight: 600; text-shadow: 0 0 10px rgba(0, 255, 0, .35); }
+.prose h3 { margin-top: 1.7em; color: #dcebe2; text-shadow: none; }
+.prose h3::before { content: '### '; color: rgba(0, 255, 100, .65); font-family: var(--mono); font-size: .82em; font-weight: 600; }
+.prose h4 { margin-top: 1.4em; color: #dcebe2; text-shadow: none; }
 .prose img { max-width: 100%; border-radius: 8px; }
 .prose blockquote { margin: 1.4em 0; padding: 6px 18px; border-left: 3px solid var(--accent); background: var(--glass); border-radius: 0 10px 10px 0; color: var(--ink-dim); }
 /* callouts / alerts */
