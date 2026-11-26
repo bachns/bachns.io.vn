@@ -10,7 +10,7 @@ export const SITE = {
   altName: 'Bách Nguyễn',
   position: 'Systems Administrator · Linux & Observability',
   location: 'Hanoi, Vietnam',
-  bio: 'I run Linux systems and monitoring platforms, and I love technology, books and coffee. Here I write about security, system administration, Linux, programming and cryptography: notes from what I learn along the way.',
+  bio: 'I run Linux systems and monitoring platforms, and I love technology, books and tea. Here I write about security, system administration, Linux, programming and cryptography: notes from what I learn along the way.',
 };
 
 export const CATEGORIES = {
