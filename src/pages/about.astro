@@ -2,9 +2,9 @@
 import Base from '../layouts/Base.astro';
 import { SITE } from '../lib/site';
 const stack: [string, string[]][] = [
-  ['Infrastructure', ['Linux', 'System Administration', 'DevOps', 'Kubernetes (K8s)']],
-  ['Observability', ['Monitoring', 'Prometheus', 'Grafana', 'ELK Stack']],
-  ['Data', ['Big Data', 'Apache Kafka', 'ClickHouse', 'Data Warehouse', 'Databases']],
+  ['Platforms', ['Linux', 'Kubernetes']],
+  ['Observability', ['Prometheus', 'Grafana', 'ELK Stack']],
+  ['Data', ['Apache Kafka', 'ClickHouse', 'Databases']],
 ];
 const jsonLd = {
   '@context': 'https://schema.org',
@@ -16,7 +16,7 @@ const jsonLd = {
   address: { '@type': 'PostalAddress', addressLocality: 'Hanoi', addressCountry: 'VN' },
   jobTitle: 'Systems Administrator',
   alumniOf: { '@type': 'CollegeOrUniversity', name: 'Military Technical Academy', url: 'https://mta.edu.vn/' },
-  knowsAbout: ['Monitoring', 'Prometheus', 'Grafana', 'ELK Stack', 'Apache Kafka', 'ClickHouse', 'Kubernetes', 'DevOps', 'Big Data', 'Databases', 'Linux', 'Cryptography'],
+  knowsAbout: ['Linux', 'System Administration', 'Observability', 'Monitoring', 'Prometheus', 'Grafana', 'ELK Stack', 'Apache Kafka', 'ClickHouse', 'Kubernetes', 'DevOps', 'Big Data', 'Data Warehouse', 'Databases'],
 };
 ---
 <Base title="About" description="About Bach Nguyen, a Linux systems administrator who loves technology, books and coffee, writing from Hanoi, Vietnam.">
@@ -44,13 +44,13 @@ const jsonLd = {
     <p class="about-text">
       I'm based in Hanoi, Vietnam, and my hometown is in Hung Yen Province, the old Thai Binh Province.
       I studied Information Technology at the <a href="https://mta.edu.vn/">Military Technical Academy</a>,
-      and these days I'm fueled by coffee and books, with a little volleyball on the side.
+      and these days I'm fueled by coffee and books, with a game of Chinese chess now and then.
     </p>
 
     <h2 class="section-title">// tech i work with</h2>
     <p class="about-text">
       My day-to-day is system administration: running Linux systems and keeping them observable.
-      Around that sit the data and infrastructure platforms I work with.
+      I work with DevOps practices, monitoring and Big Data pipelines, and these are the main tools I use.
     </p>
     <div class="tech-rows">
       {stack.map(([label, items]) => (
@@ -117,8 +117,9 @@ const jsonLd = {
       sleepiness. Today I drink it every day: morning, afternoon, and sometimes late at night.
     </p>
     <p class="about-text">
-      I also play volleyball. I'm no national star, but at my workplace I'm ranked in the top ten,
-      and at 1.74 m tall I'm the terror of every blocker.
+      I used to play volleyball, but these days my sport is Xiangqi (Chinese chess). I love how it rewards
+      patience and planning ahead, which is not so different from running systems: think a few moves
+      ahead, and don't leave anything unguarded.
     </p>
 
     <h2 class="section-title">// say hello</h2>
