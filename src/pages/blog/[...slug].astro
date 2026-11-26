@@ -15,7 +15,7 @@ const c = CATEGORIES[post.data.category];
   <div class="container narrow">
     <header class="post-head">
       <div class="meta">
-        <a class="badge" href={`/category/${post.data.category}/`}>{c.icon} {c.name}</a>
+        <a class="badge" href={`/category/${post.data.category}/`}><Fragment set:html={c.icon} /> {c.name}</a>
         <time datetime={post.data.date.toISOString()}>{fmtDate(post.data.date)}</time>
         {post.data.updated && <span>updated {fmtDate(post.data.updated)}</span>}
         <span>{readingTime(post.body ?? '')} min read</span>

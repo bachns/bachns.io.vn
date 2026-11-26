@@ -6,7 +6,7 @@ const c = CATEGORIES[post.data.category];
 ---
 <article class="card">
   <div class="meta">
-    <a class="badge" href={`/category/${post.data.category}/`}>{c.icon} {c.name}</a>
+    <a class="badge" href={`/category/${post.data.category}/`}><Fragment set:html={c.icon} /> {c.name}</a>
     <time datetime={post.data.date.toISOString()}>{fmtDate(post.data.date)}</time>
     <span>{readingTime(post.body ?? '')} min read</span>
   </div>

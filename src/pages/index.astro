@@ -36,7 +36,7 @@ const count = (k: string) => posts.filter((p) => p.data.category === k).length;
     <div class="section-title">// categories</div>
     <div class="cats">
       {Object.entries(CATEGORIES).map(([k, c]) => (
-        <a class="cat" href={`/category/${k}/`}><span class="ic">{c.icon}</span><strong>{c.name}</strong><small>{count(k)} {count(k) === 1 ? 'post' : 'posts'}</small></a>
+        <a class="cat" href={`/category/${k}/`}><span class="ic" set:html={c.icon}></span><strong>{c.name}</strong><small>{count(k)} {count(k) === 1 ? 'post' : 'posts'}</small></a>
       ))}
     </div>
 

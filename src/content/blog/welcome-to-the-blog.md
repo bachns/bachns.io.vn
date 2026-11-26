@@ -10,11 +10,14 @@ This is where I take notes on my journey through **security**, **systems**, **Li
 
 ## What you will find here
 
-- 🛡️ **Security** - defensive practice, vulnerability analysis and hardening.
-- 🖧 **Sysadmin** - servers, networking, automation.
-- 🐧 **Linux** - the command line, tooling and practical tips.
-- ⌨️ **Programming** - Python, C, Go, web.
-- 🔐 **Cryptography** - from theory to practice.
+- **Sysadmin** - servers, networking, automation.
+- **Linux** - the command line, tooling and practical tips.
+- **Observability** - monitoring, metrics, logging and alerting.
+- **DevOps** - containers, Kubernetes and CI/CD.
+- **Data** - databases, Kafka, ClickHouse and Big Data.
+- **Security** - defensive practice, vulnerability analysis and hardening.
+- **Programming** - Python, C, Go, web.
+- **Cryptography** - from theory to practice.
 
 ## How to add a new post
 
@@ -25,7 +28,7 @@ Create a `.md` file in `src/content/blog/` with this frontmatter:
 title: "Title"
 description: "Short description"
 date: 2026-11-25
-category: linux   # security | sysadmin | linux | programming | cryptography | tech
+category: linux   # sysadmin | linux | observability | devops | data | security | programming | cryptography | tech
 tags: [bash, tips]
 draft: false
 ---
