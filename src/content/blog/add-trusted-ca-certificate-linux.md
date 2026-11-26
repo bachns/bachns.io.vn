@@ -38,7 +38,8 @@ If `openssl` fails with `unable to load certificate`, your file is likely binary
 openssl x509 -inform DER -in rootcag2.cer -out rootcag2.crt
 ```
 
-> ⚠️ **Permissions matter:** Always install anchor files with mode `0644` (`root:root`). Copying a certificate created under a restrictive `umask` (like `0077`) leaves it `0600`, causing non-root services (`nginx`, `prometheus`, `systemd` dynamic users) to fail TLS verification with mysterious permission or unknown-CA errors. Using `install -m 0644` instead of `cp` avoids this pitfall completely.
+> [!WARNING]
+> **Permissions matter:** Always install anchor files with mode `0644` (`root:root`). Copying a certificate created under a restrictive `umask` (like `0077`) leaves it `0600`, causing non-root services (`nginx`, `prometheus`, `systemd` dynamic users) to fail TLS verification with mysterious permission or unknown-CA errors. Using `install -m 0644` instead of `cp` avoids this pitfall completely.
 
 ## 2. Quick Reference by Distribution
 
@@ -142,7 +143,8 @@ Look for `Verify return code: 0 (ok)` at the bottom of the output, then confirm 
 curl -Iv https://internal.example.com
 ```
 
-> 💡 If `openssl s_client` returns `unable to verify the first certificate` (`code 20` or `21`) even after adding the Root CA, the remote server is likely **missing its Intermediate CA certificate** in its TLS chain (`fullchain.pem`). Fix the server configuration so it sends `leaf + intermediate`, rather than pinning intermediates on every client.
+> [!TIP]
+> If `openssl s_client` returns `unable to verify the first certificate` (`code 20` or `21`) even after adding the Root CA, the remote server is likely **missing its Intermediate CA certificate** in its TLS chain (`fullchain.pem`). Fix the server configuration so it sends `leaf + intermediate`, rather than pinning intermediates on every client.
 
 ## 5. Runtimes That Ignore the OS Trust Store
 

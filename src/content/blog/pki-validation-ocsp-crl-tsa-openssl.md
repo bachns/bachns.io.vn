@@ -39,7 +39,8 @@ Download the issuer certificate directly from the AIA URL without following unex
 wget --max-redirect=0 http://pki.example.com/pub/crt/subca-g2.crt
 ```
 
-> 💡 **DER vs. PEM at AIA URLs:** Per RFC 5280 Section 4.2.2.1, HTTP `caIssuers` endpoints commonly serve binary **DER-encoded** certificates (`.crt` / `.cer`), even when the filename ends in `.crt`. Before passing the issuer file to older OpenSSL subcommands or concatenating chains, check its format and convert to PEM if needed:
+> [!TIP]
+> **DER vs. PEM at AIA URLs:** Per RFC 5280 Section 4.2.2.1, HTTP `caIssuers` endpoints commonly serve binary **DER-encoded** certificates (`.crt` / `.cer`), even when the filename ends in `.crt`. Before passing the issuer file to older OpenSSL subcommands or concatenating chains, check its format and convert to PEM if needed:
 >
 > ```bash
 > file subca-g2.crt
@@ -216,4 +217,5 @@ ab -n 1000 -c 50 \
   http://ocsp.example.com/
 ```
 
-> ⚠️ **Note on nonces and HSM load:** Replaying the same `request.tsq` with `ab` benchmarks raw cryptographic signing throughput on the TSA worker. For OCSP, requests containing a `Nonce` extension force the responder (if nonce-enabled) to sign dynamically on the HSM instead of serving pre-produced or proxy-cached responses, so test both `-nonce` and `-no_nonce` profiles to measure worst-case HSM saturation vs. cache hit latency.
+> [!WARNING]
+> **Note on nonces and HSM load:** Replaying the same `request.tsq` with `ab` benchmarks raw cryptographic signing throughput on the TSA worker. For OCSP, requests containing a `Nonce` extension force the responder (if nonce-enabled) to sign dynamically on the HSM instead of serving pre-produced or proxy-cached responses, so test both `-nonce` and `-no_nonce` profiles to measure worst-case HSM saturation vs. cache hit latency.

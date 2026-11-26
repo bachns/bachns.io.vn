@@ -32,4 +32,5 @@ sudo apt install fail2ban
 sudo systemctl enable --now fail2ban
 ```
 
-> ⚠️ Always keep one SSH session open while testing a new configuration, so you don't lock yourself out.
+> [!WARNING]
+> Always keep one SSH session open while testing a new configuration, so you don't lock yourself out.
