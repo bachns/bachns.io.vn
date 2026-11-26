@@ -8,9 +8,9 @@ export const SITE = {
   avatar: '/images/avatar.jpg',
   name: 'Bach Nguyen',
   altName: 'Bách Nguyễn',
-  position: 'Developer · Security & Systems Enthusiast',
+  position: 'Systems Administrator · Linux & Observability',
   location: 'Hanoi, Vietnam',
-  bio: 'I love technology, books and coffee. I write about security, system administration, Linux, programming and cryptography - notes from my own journey of learning and building.',
+  bio: 'I run Linux systems and observability platforms, and I love technology, books and coffee. Here I write about security, system administration, Linux, programming and cryptography: notes from my own journey of learning and building.',
 };
 
 export const CATEGORIES = {

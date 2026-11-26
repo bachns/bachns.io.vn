@@ -2,9 +2,9 @@
 import Base from '../layouts/Base.astro';
 import { SITE } from '../lib/site';
 const stack: [string, string[]][] = [
+  ['Infrastructure', ['Linux', 'System Administration', 'DevOps', 'Kubernetes (K8s)']],
   ['Observability', ['Monitoring', 'Prometheus', 'Grafana', 'ELK Stack']],
   ['Data', ['Big Data', 'Apache Kafka', 'ClickHouse', 'Data Warehouse', 'Databases']],
-  ['Infrastructure', ['DevOps', 'Kubernetes (K8s)']],
 ];
 const jsonLd = {
   '@context': 'https://schema.org',
@@ -14,18 +14,19 @@ const jsonLd = {
   url: 'https://bachns.io.vn/about/',
   image: `https://bachns.io.vn${SITE.avatar}`,
   address: { '@type': 'PostalAddress', addressLocality: 'Hanoi', addressCountry: 'VN' },
+  jobTitle: 'Systems Administrator',
   alumniOf: { '@type': 'CollegeOrUniversity', name: 'Military Technical Academy', url: 'https://mta.edu.vn/' },
   knowsAbout: ['Monitoring', 'Prometheus', 'Grafana', 'ELK Stack', 'Apache Kafka', 'ClickHouse', 'Kubernetes', 'DevOps', 'Big Data', 'Databases', 'Linux', 'Cryptography'],
 };
 ---
-<Base title="About" description="About Bach Nguyen, a developer who loves technology, books and coffee, writing from Hanoi, Vietnam.">
+<Base title="About" description="About Bach Nguyen, a Linux systems administrator who loves technology, books and coffee, writing from Hanoi, Vietnam.">
   <div class="container about">
     <header class="about-head">
       <div class="about-photo"><img src={SITE.avatar} alt={`${SITE.name} - profile photo`} width="768" height="768" /></div>
       <div>
         <h1>~/about</h1>
         <p class="about-name">{SITE.name} <span>({SITE.altName})</span></p>
-        <p class="about-sub">A developer who loves technology, books and coffee.</p>
+        <p class="about-sub">A Linux systems administrator who loves technology, books and coffee.</p>
         <p class="about-loc">📍 {SITE.location}</p>
       </div>
     </header>
@@ -37,6 +38,10 @@ const jsonLd = {
     </p>
 
     <p class="about-text">
+      I work in system administration: operating Linux systems and observability platforms, and writing some code
+      now and then.
+    </p>
+    <p class="about-text">
       I'm based in Hanoi, Vietnam, and my hometown is in Hung Yen Province, the old Thai Binh Province.
       I studied Information Technology at the <a href="https://mta.edu.vn/">Military Technical Academy</a>,
       and these days I'm fueled by coffee and books, with a little volleyball on the side.
@@ -44,7 +49,8 @@ const jsonLd = {
 
     <h2 class="section-title">// tech i work with</h2>
     <p class="about-text">
-      Beyond writing code, I spend my time on the platforms behind it: data, infrastructure and observability.
+      My day-to-day is system administration: running Linux systems and keeping them observable.
+      Around that sit the data and infrastructure platforms I work with.
     </p>
     <div class="tech-rows">
       {stack.map(([label, items]) => (
@@ -57,14 +63,14 @@ const jsonLd = {
 
     <h2 class="section-title">// why this blog</h2>
     <p class="about-text">
-      This blog is my notebook. Along the road I keep picking up knowledge: a bit of technology, some cryptography,
-      a lot of programming, and the many moving parts of IT systems. Writing it down helps me remember it,
+      This blog is my notebook. Along the road I keep picking up knowledge: a lot about IT systems and Linux, some cryptography,
+      some programming, and technology in general. Writing it down helps me remember it,
       and sharing it means someone else might skip a few of the wrong turns I took.
     </p>
     <p class="about-text">
-      Here is what you can expect: notes on <a href="/category/security/">security</a>,
-      <a href="/category/sysadmin/">system administration</a>, <a href="/category/linux/">Linux</a>,
-      <a href="/category/programming/">programming</a> and <a href="/category/cryptography/">cryptography</a>,
+      Here is what you can expect: notes on <a href="/category/sysadmin/">system administration</a>,
+      <a href="/category/linux/">Linux</a>, <a href="/category/security/">security</a>,
+      <a href="/category/cryptography/">cryptography</a> and <a href="/category/programming/">programming</a>,
       plus some <a href="/category/tech/">tech</a> news and trends. And now and then, a few random things
       that don't fit anywhere else.
     </p>
@@ -88,7 +94,7 @@ const jsonLd = {
       </li>
       <li class="tl">
         <span class="tl-tag">A big decision</span>
-        <h3>Uniform and code</h3>
+        <h3>Uniform and IT</h3>
         <p>In my final year I made a hard decision: I chose the military, and I chose to study
         <strong>Information Technology</strong> at the
         <a href="https://mta.edu.vn/"><strong>Military Technical Academy</strong></a> (MTA).
@@ -97,7 +103,8 @@ const jsonLd = {
       <li class="tl">
         <span class="tl-tag">Today</span>
         <h3>Still learning, now in public</h3>
-        <p>These days I'm a developer living in Hanoi, still curious, still learning, and writing down
+        <p>These days I work in system administration in Hanoi, running Linux systems and observability,
+        with some programming now and then. I'm still curious, still learning, and writing down
         what I learn here so I can keep it and share it.</p>
       </li>
     </ol>
@@ -119,7 +126,7 @@ const jsonLd = {
       If you want to talk about technology, or you have feedback on a post, you're always welcome to reach out.
     </p>
     <div class="hero-cta">
-      <a class="btn" href="mailto:bachns@outlook.com">✉ Email</a>
+      <a class="btn" href="mailto:bachns@outlook.com">Email</a>
       <a class="btn ghost" href="https://t.me/bachns">Telegram</a>
       <a class="btn ghost" href="/rss.xml">RSS</a>
     </div>
