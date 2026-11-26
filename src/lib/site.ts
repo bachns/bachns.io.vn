@@ -10,16 +10,16 @@ export const SITE = {
   altName: 'Bách Nguyễn',
   position: 'Systems Administrator · Linux & Observability',
   location: 'Hanoi, Vietnam',
-  bio: 'I run Linux systems and monitoring platforms, and I love technology, books and tea. Here I write about security, system administration, Linux, programming and cryptography: notes from what I learn along the way.',
+  bio: 'I run Linux infrastructure and observability platforms, and I love technology, books and tea. Here I write about security, system administration, Linux, programming and cryptography: practical notes from my own journey of learning and building.',
 };
 
 export const CATEGORIES = {
-  'security':     { name: 'Security',     icon: '🛡️', desc: 'Information security, defense and finding weak points in systems.' },
-  'sysadmin':     { name: 'Sysadmin',     icon: '🖧', desc: 'System and network administration, servers, DevOps and automation.' },
-  'linux':        { name: 'Linux',        icon: '🐧', desc: 'Kernel, shell, command-line tools and Linux tips.' },
-  'programming':  { name: 'Programming',  icon: '⌨️', desc: 'Python, C/C++, Go, Rust, web development and building better software.' },
-  'cryptography': { name: 'Cryptography', icon: '🔐', desc: 'Cryptography basics, hash functions, keys and real-life uses.' },
-  'tech':         { name: 'Tech',         icon: '⚡', desc: 'News, trends and ideas about technology.' },
+  'security':     { name: 'Security',     icon: '🛡️', desc: 'Information security, defensive practice and vulnerability analysis.' },
+  'sysadmin':     { name: 'Sysadmin',     icon: '🖧', desc: 'System and network administration, server operations, DevOps and automation.' },
+  'linux':        { name: 'Linux',        icon: '🐧', desc: 'The kernel, the shell, command-line tooling and practical Linux administration.' },
+  'programming':  { name: 'Programming',  icon: '⌨️', desc: 'Python, C/C++, Go, Rust, web development and software engineering.' },
+  'cryptography': { name: 'Cryptography', icon: '🔐', desc: 'Cryptographic primitives, protocols, hash functions, PKI and real-world applications.' },
+  'tech':         { name: 'Tech',         icon: '⚡', desc: 'News, trends and perspectives on technology.' },
 } as const;
 export type CategoryKey = keyof typeof CATEGORIES;
 
