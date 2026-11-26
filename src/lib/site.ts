@@ -10,16 +10,16 @@ export const SITE = {
   altName: 'Bách Nguyễn',
   position: 'Systems Administrator · Linux & Observability',
   location: 'Hanoi, Vietnam',
-  bio: 'I run Linux systems and observability platforms, and I love technology, books and coffee. Here I write about security, system administration, Linux, programming and cryptography: notes from my own journey of learning and building.',
+  bio: 'I run Linux systems and monitoring platforms, and I love technology, books and coffee. Here I write about security, system administration, Linux, programming and cryptography: notes from what I learn along the way.',
 };
 
 export const CATEGORIES = {
-  'security':     { name: 'Security',     icon: '🛡️', desc: 'Information security, defense, blue team and vulnerability analysis.' },
+  'security':     { name: 'Security',     icon: '🛡️', desc: 'Information security, defense and finding weak points in systems.' },
   'sysadmin':     { name: 'Sysadmin',     icon: '🖧', desc: 'System and network administration, servers, DevOps and automation.' },
   'linux':        { name: 'Linux',        icon: '🐧', desc: 'Kernel, shell, command-line tools and Linux tips.' },
-  'programming':  { name: 'Programming',  icon: '⌨️', desc: 'Python, C/C++, Go, Rust, web development and software engineering.' },
-  'cryptography': { name: 'Cryptography', icon: '🔐', desc: 'Cryptography, protocols, hash functions, PKI and real-world applications.' },
-  'tech':         { name: 'Tech',         icon: '⚡', desc: 'News, trends and perspectives on technology.' },
+  'programming':  { name: 'Programming',  icon: '⌨️', desc: 'Python, C/C++, Go, Rust, web development and building better software.' },
+  'cryptography': { name: 'Cryptography', icon: '🔐', desc: 'Cryptography basics, hash functions, keys and real-life uses.' },
+  'tech':         { name: 'Tech',         icon: '⚡', desc: 'News, trends and ideas about technology.' },
 } as const;
 export type CategoryKey = keyof typeof CATEGORIES;
 

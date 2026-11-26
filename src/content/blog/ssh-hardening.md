@@ -1,12 +1,12 @@
 ---
-title: "Hardening SSH on a Linux server in 10 minutes"
-description: "Disable password login, change risky defaults and add fail2ban to shrink the attack surface."
+title: "Securing SSH on a Linux server in 10 minutes"
+description: "Turn off password login, change unsafe default settings and add fail2ban to reduce the risk of attacks."
 date: 2026-11-23
 category: sysadmin
 tags: [ssh, hardening, linux]
 ---
 
-SSH is the front door of your server, so lock it down properly.
+SSH is the front door of your server, so keep it safe.
 
 ## Configure `sshd_config`
 
@@ -32,4 +32,4 @@ sudo apt install fail2ban
 sudo systemctl enable --now fail2ban
 ```
 
-> ⚠️ Always keep one SSH session open while testing a new configuration so you don't lock yourself out.
+> ⚠️ Always keep one SSH session open while you test a new setting, so you do not lock yourself out.

@@ -1,12 +1,12 @@
 ---
 title: "A basic security checklist for web applications"
-description: "A quick list of defensive measures based on the OWASP Top 10."
+description: "A short list of ways to protect your web app, based on the OWASP Top 10."
 date: 2026-11-19
 category: security
 tags: [owasp, web, checklist]
 ---
 
-## Authentication & sessions
+## Login & sessions
 
 - Use MFA and hash passwords with Argon2id.
 - Set cookies with `HttpOnly; Secure; SameSite=Lax`.
@@ -14,7 +14,7 @@ tags: [owasp, web, checklist]
 ## Input & output
 
 - Use prepared statements to prevent SQL injection.
-- Escape output by context to prevent XSS.
+- Escape data before you show it on a page, to stop XSS.
 
 ## Recommended headers
 

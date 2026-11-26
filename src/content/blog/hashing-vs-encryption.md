@@ -1,6 +1,6 @@
 ---
 title: "Hashing, encryption, signing: stop mixing them up"
-description: "Telling apart three foundational cryptography concepts and when to use each."
+description: "How to tell three basic cryptography ideas apart, and when to use each."
 date: 2026-11-20
 category: cryptography
 tags: [hash, aes, rsa, basics]

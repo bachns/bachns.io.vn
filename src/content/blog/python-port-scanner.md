@@ -23,4 +23,4 @@ if __name__ == "__main__":
     print(scan("127.0.0.1"))
 ```
 
-This is meant for learning and for checking hosts you own or administer.
+Use it only for learning and for checking servers that you own or manage.
