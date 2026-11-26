@@ -10,7 +10,7 @@ export const SITE = {
   altName: 'Bách Nguyễn',
   position: 'Systems Administrator · Linux & Observability',
   location: 'Hanoi, Vietnam',
-  bio: 'I run Linux infrastructure and observability platforms, and I love technology, books and tea. Here I write about security, system administration, Linux, programming and cryptography: practical notes from my own journey of learning and building.',
+  bio: 'I operate Linux infrastructure and observability platforms. This blog collects practical notes on Linux, observability, DevOps, data platforms, security and cryptography.',
 };
 
 // Giscus comments (GitHub Discussions). The widget stays hidden until categoryId is set.
