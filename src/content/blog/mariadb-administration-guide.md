@@ -1,7 +1,7 @@
 ---
 title: "MariaDB Administration Cheat Sheet"
 description: "Practical day-to-day commands for running MariaDB on Linux: installation, UTF-8 databases, least-privilege users, safe transactions, online backups, and 3-node Galera clusters."
-date: 2026-11-26
+date: 2026-11-18
 category: data
 tags: [mariadb, database, sql, galera, backup]
 draft: false
@@ -154,8 +154,8 @@ Check both the header and the last line (`Dump completed on ...`) to confirm the
 
 ```bash
 ls -lh /backup/app_db_*.sql.gz
-zcat /backup/app_db_20261126_020000.sql.gz | head -n 25
-zcat /backup/app_db_20261126_020000.sql.gz | tail -n 5
+zcat /backup/app_db_20261118_020000.sql.gz | head -n 25
+zcat /backup/app_db_20261118_020000.sql.gz | tail -n 5
 ```
 
 ### Step 3: Restore Scenarios
@@ -165,7 +165,7 @@ zcat /backup/app_db_20261126_020000.sql.gz | tail -n 5
 Because `--databases` embedded `CREATE DATABASE IF NOT EXISTS` and `USE app_db;` in the dump, stream it directly into `mariadb`:
 
 ```bash
-zcat /backup/app_db_20261126_020000.sql.gz | mariadb -u root -p
+zcat /backup/app_db_20261118_020000.sql.gz | mariadb -u root -p
 ```
 
 **Scenario B - Restore into a different database name (`app_db_staging`):**
@@ -181,7 +181,7 @@ If the backup **already contains** `--databases app_db`, strip the top-level `CR
 
 ```bash
 mariadb -u root -p -e "CREATE DATABASE app_db_staging CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;"
-zcat /backup/app_db_20261126_020000.sql.gz \
+zcat /backup/app_db_20261118_020000.sql.gz \
   | sed '/^CREATE DATABASE /d; /^USE /d' \
   | mariadb -u root -p app_db_staging
 ```

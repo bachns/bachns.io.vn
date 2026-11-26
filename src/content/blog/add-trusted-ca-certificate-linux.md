@@ -1,7 +1,7 @@
 ---
 title: "Adding Trusted Root CA Certificates (Trust Anchors) on Linux"
 description: "How to properly install, verify, and remove custom Root CA certificates across RHEL/Rocky/Oracle Linux, Debian/Ubuntu, Alpine, SUSE, Arch, and language-specific runtimes."
-date: 2026-11-26
+date: 2026-07-11
 category: sysadmin
 tags: [pki, tls, linux, openssl, ca-certificates]
 draft: false

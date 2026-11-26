@@ -1,8 +1,7 @@
 ---
 title: "Hardening a Linux server in 10 minutes"
 description: "A practical first-boot security baseline for Debian/Ubuntu and RHEL/Rocky Linux: SSH key-only access, default-deny firewalls, SELinux/AppArmor, automatic patches, Fail2ban, and sysctl tuning."
-date: 2026-11-23
-updated: 2026-11-26
+date: 2026-04-28
 category: security
 tags: [hardening, linux, ssh, firewall, selinux, sysadmin]
 draft: false

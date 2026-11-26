@@ -1,8 +1,7 @@
 ---
 title: "10 useful Linux one-liners"
 description: "Simple, practical Linux commands I use every day to check logs, disk space, ports, processes, and config files."
-date: 2026-11-22
-updated: 2026-11-26
+date: 2026-02-15
 category: linux
 tags: [bash, tips, cli, linux]
 draft: false
