@@ -2,9 +2,11 @@
 import Base from '../layouts/Base.astro';
 import { SITE } from '../lib/site';
 const stack: [string, string[]][] = [
-  ['Platforms', ['Linux', 'Kubernetes']],
-  ['Observability', ['Prometheus', 'Grafana', 'ELK Stack']],
-  ['Data', ['Apache Kafka', 'ClickHouse', 'Databases']],
+  ['Systems', ['Linux', 'Bash', 'Ansible', 'Nginx']],
+  ['DevOps', ['Docker', 'Kubernetes', 'Helm', 'Git', 'CI/CD']],
+  ['Observability', ['Prometheus', 'Alertmanager', 'Grafana', 'Loki', 'ELK Stack', 'OpenTelemetry']],
+  ['Data', ['Apache Kafka', 'ClickHouse', 'PostgreSQL', 'MySQL', 'Redis']],
+  ['Scripting', ['Python', 'Go']],
 ];
 const jsonLd = {
   '@context': 'https://schema.org',
@@ -16,7 +18,7 @@ const jsonLd = {
   address: { '@type': 'PostalAddress', addressLocality: 'Hanoi', addressCountry: 'VN' },
   jobTitle: 'Systems Administrator',
   alumniOf: { '@type': 'CollegeOrUniversity', name: 'Military Technical Academy', url: 'https://mta.edu.vn/' },
-  knowsAbout: ['Linux', 'System Administration', 'Observability', 'Monitoring', 'Prometheus', 'Grafana', 'ELK Stack', 'Apache Kafka', 'ClickHouse', 'Kubernetes', 'DevOps', 'Big Data', 'Data Warehouse', 'Databases'],
+  knowsAbout: ['Linux', 'System Administration', 'Bash', 'Ansible', 'Nginx', 'Docker', 'Kubernetes', 'Helm', 'DevOps', 'CI/CD', 'Observability', 'Monitoring', 'Prometheus', 'Alertmanager', 'Grafana', 'Grafana Loki', 'ELK Stack', 'OpenTelemetry', 'Apache Kafka', 'ClickHouse', 'PostgreSQL', 'MySQL', 'Redis', 'Big Data', 'Data Warehouse', 'Python'],
 };
 ---
 <Base title="About" description="About Bach Nguyen, a Linux systems administrator who loves technology, books and coffee, writing from Hanoi, Vietnam.">
@@ -50,7 +52,7 @@ const jsonLd = {
     <h2 class="section-title">// tech i work with</h2>
     <p class="about-text">
       My day-to-day is system administration: running Linux systems and keeping them observable.
-      I work with DevOps practices, monitoring and Big Data pipelines, and these are the main tools I use.
+      I work with DevOps practices, monitoring and Big Data pipelines, and these are the main tools I reach for.
     </p>
     <div class="tech-rows">
       {stack.map(([label, items]) => (
