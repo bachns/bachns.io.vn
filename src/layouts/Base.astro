@@ -33,7 +33,6 @@ const nav = [
       <a href="/" class="logo"><span>root@</span>{SITE.title}<span>:~$</span><i class="cursor"></i></a>
       <nav>
         {nav.map(([href, label]) => <a href={href} class:list={{ active: path.startsWith(href) }}>{label}</a>)}
-        <a href="/rss.xml" title="RSS">rss</a>
         <button class="icon-btn" id="bgbtn" aria-label="Change background" title="Change background">◈</button>
       </nav>
     </div>
