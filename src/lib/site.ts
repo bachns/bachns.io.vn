@@ -18,7 +18,7 @@ export const GISCUS = {
   repo: 'bachns/bachns.io.vn',
   repoId: 'R_kgDOV7yTjg',
   category: 'Announcements',
-  categoryId: '',
+  categoryId: 'DIC_kwDOV7yTjs4DL_Th',
 };
 
 // Line icons (24x24, stroke = currentColor) so they follow the theme color.
