@@ -24,7 +24,7 @@ const c = CATEGORIES[post.data.category];
       <div class="tags">{post.data.tags.map((t) => <a class="tag" href={`/tag/${t}/`}>{t}</a>)}</div>
     </header>
     <article class="prose"><Content /></article>
-    <nav class="post-nav" style="display:grid">
+    <nav class="post-nav" aria-label="Post navigation">
       {older ? <a href={`/blog/${older.id}/`}><small>← Older post</small>{older.data.title}</a> : <span></span>}
       {newer ? <a class="next" href={`/blog/${newer.id}/`}><small>Newer post →</small>{newer.data.title}</a> : <span></span>}
     </nav>
@@ -33,9 +33,17 @@ const c = CATEGORIES[post.data.category];
     const bar = document.getElementById('progress');
     addEventListener('scroll', () => { const h = document.documentElement; bar.style.width = (h.scrollTop / (h.scrollHeight - h.clientHeight) * 100) + '%'; }, { passive: true });
     document.querySelectorAll('.prose pre').forEach((pre) => {
-      const b = document.createElement('button'); b.className = 'copy-btn'; b.textContent = 'copy';
-      b.onclick = async () => { await navigator.clipboard.writeText(pre.innerText); b.textContent = 'copied!'; setTimeout(() => (b.textContent = 'copy'), 1500); };
-      pre.appendChild(b);
+      const lang = (pre.dataset.lang || 'text').replace('plaintext', 'text');
+      const frame = document.createElement('div'); frame.className = 'codeblock';
+      const head = document.createElement('div'); head.className = 'code-head';
+      const label = document.createElement('span'); label.textContent = lang;
+      const b = document.createElement('button'); b.className = 'copy-btn'; b.type = 'button'; b.textContent = 'copy';
+      b.onclick = async () => {
+        try { await navigator.clipboard.writeText(pre.innerText); b.textContent = 'copied'; } catch { b.textContent = 'failed'; }
+        setTimeout(() => (b.textContent = 'copy'), 1500);
+      };
+      head.append(label, b);
+      pre.replaceWith(frame); frame.append(head, pre);
     });
   </script>
 </Base>
