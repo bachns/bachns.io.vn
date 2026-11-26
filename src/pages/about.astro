@@ -16,7 +16,10 @@ const jsonLd = {
   image: `https://bachns.io.vn${SITE.avatar}`,
   address: { '@type': 'PostalAddress', addressLocality: 'Hanoi', addressCountry: 'VN' },
   jobTitle: 'Systems Administrator',
-  alumniOf: { '@type': 'CollegeOrUniversity', name: 'Military Technical Academy', url: 'https://mta.edu.vn/' },
+  alumniOf: [
+    { '@type': 'CollegeOrUniversity', name: 'Military Technical Academy', url: 'https://mta.edu.vn/' },
+    { '@type': 'CollegeOrUniversity', name: 'Academy of Cryptography Techniques' },
+  ],
   knowsAbout: ['Linux', 'System Administration', 'Bash', 'Ansible', 'Nginx', 'Docker', 'Kubernetes', 'Helm', 'DevOps', 'CI/CD', 'Observability', 'Monitoring', 'Prometheus', 'Alertmanager', 'Grafana', 'Grafana Loki', 'ELK Stack', 'OpenTelemetry', 'Apache Kafka', 'ClickHouse', 'PostgreSQL', 'MySQL', 'Redis', 'Big Data', 'Data Warehouse', 'Python'],
 };
 ---
@@ -44,8 +47,9 @@ const jsonLd = {
     </p>
     <p class="about-text">
       I'm based in Hanoi, Vietnam, and my hometown is in Hung Yen Province, the old Thai Binh Province.
-      I studied Information Technology at the <a href="https://mta.edu.vn/">Military Technical Academy</a>,
-      and these days I'm fueled by tea and books, with a game of Xiangqi now and then.
+      I studied Information Technology at the <a href="https://mta.edu.vn/">Military Technical Academy</a>
+      and later did a Master's degree in Cryptography at the Academy of Cryptography Techniques.
+      These days I'm fueled by tea and books, with a game of Xiangqi now and then.
     </p>
 
     <h2 class="section-title">// tech i work with</h2>
@@ -101,6 +105,14 @@ const jsonLd = {
         <strong>Information Technology</strong> at the
         <a href="https://mta.edu.vn/"><strong>Military Technical Academy</strong></a> (MTA).
         It wasn't easy, but I'm still happy and proud that I made that choice.</p>
+      </li>
+      <li class="tl">
+        <span class="tl-tag">Master's degree</span>
+        <h3>From systems to ciphers</h3>
+        <p>Later I went on to study for a <strong>Master's degree in Cryptography</strong> at the
+        <strong>Academy of Cryptography Techniques</strong>, part of the
+        <strong>Government Cipher Committee</strong>. It gave me a solid foundation in cryptography,
+        and it is one of the reasons the subject has a place on this blog.</p>
       </li>
       <li class="tl">
         <span class="tl-tag">Today</span>
