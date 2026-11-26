@@ -13,6 +13,14 @@ export const SITE = {
   bio: 'I run Linux infrastructure and observability platforms, and I love technology, books and tea. Here I write about security, system administration, Linux, programming and cryptography: practical notes from my own journey of learning and building.',
 };
 
+// Giscus comments (GitHub Discussions). The widget stays hidden until categoryId is set.
+export const GISCUS = {
+  repo: 'bachns/bachns.io.vn',
+  repoId: 'R_kgDOV7yTjg',
+  category: 'Announcements',
+  categoryId: '',
+};
+
 // Line icons (24x24, stroke = currentColor) so they follow the theme color.
 const icon = (d: string) =>
   `<svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${d}</svg>`;

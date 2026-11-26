@@ -254,3 +254,8 @@ footer .container { display: flex; justify-content: center; text-align: center; 
 .cat .ic .i { width: 22px; height: 22px; vertical-align: 0; filter: drop-shadow(0 0 6px rgba(0, 255, 120, .45)); }
 .badge .i { width: 13px; height: 13px; margin-right: 3px; vertical-align: -2px; }
 .page-title h1 .i { width: 28px; height: 28px; margin-right: 6px; color: var(--accent); vertical-align: -4px; filter: drop-shadow(0 0 8px rgba(0, 255, 120, .4)); }
+
+/* comments (giscus) */
+.comments { margin: 10px 0 64px; }
+.comments-note { margin: 0 0 16px; color: var(--ink-faint); font: 12.5px/1.6 var(--mono); }
+.comments .giscus, .comments .giscus-frame { width: 100%; border: 0; color-scheme: dark; }

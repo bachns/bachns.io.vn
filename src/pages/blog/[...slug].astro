@@ -1,6 +1,7 @@
 ---
 import { render } from 'astro:content';
 import Base from '../../layouts/Base.astro';
+import Comments from '../../components/Comments.astro';
 import { CATEGORIES, fmtDate, getPosts, readingTime } from '../../lib/site';
 export async function getStaticPaths() {
   const posts = await getPosts();
@@ -28,6 +29,7 @@ const c = CATEGORIES[post.data.category];
       {older ? <a href={`/blog/${older.id}/`}><small>← Older post</small>{older.data.title}</a> : <span></span>}
       {newer ? <a class="next" href={`/blog/${newer.id}/`}><small>Newer post →</small>{newer.data.title}</a> : <span></span>}
     </nav>
+    <Comments />
   </div>
   <script is:inline>
     const bar = document.getElementById('progress');
